@@ -1,10 +1,5 @@
-<!--
-@Author: Ronnie Nyaga <internone>
-@Date:   2016-04-27T16:01:12+03:00
-@Email:  ronnienyaga@gmail.com
-@Last modified by:   internone
-@Last modified time: 2016-07-04T19:50:04+03:00
--->
+
+
 
 
 
