@@ -29,4 +29,11 @@ $api->version('v1', function ($api) {
     $api->get('/', function() {
         return ['Buddy' => 'Success! API calls work'];
     });
+
+    //Authentication
+    $api->post('/user/authenticate', 'App\Http\Controllers\Auth\AuthController@authenticate');
+    $api->post('/user/register', 'App\Http\Controllers\Auth\AuthController@registerUser');
+    $api->post('/user', 'App\Http\Controllers\Auth\AuthController@showUser');
+    $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
+
 });
