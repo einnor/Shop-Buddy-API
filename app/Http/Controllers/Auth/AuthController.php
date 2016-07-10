@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
@@ -39,14 +40,17 @@ class AuthController extends Controller
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
+     * AuthController constructor.
      */
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-
+    /**
+     * Authenticate login request
+     * @param Request $request
+     */
     public function authenticate(Request $request){
         $credentials = $request->only('email', 'password');
 
@@ -62,6 +66,11 @@ class AuthController extends Controller
         return $this->response->array(compact('token'))->setStatusCode(200);
     }
 
+    /**
+     * Get details of a logged in user using their token
+     *
+     * @return \Dingo\Api\Http\Response\Factory|void
+     */
     public function showUser(){
         try{
             $user =  JWTAuth::parseToken()->toUser();
@@ -78,19 +87,47 @@ class AuthController extends Controller
         return $this->response->array(compact('user'))->setStatusCode(200);
     }
 
-    protected function registerUser(Request $request)
+    /**
+     * Register a new user and give them a default role of 'customer'
+     *
+     * @param Request $request
+     */
+    public function registerUser(Request $request)
     {
-        $user = User::create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  => bcrypt($request->password),
-        ]);
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            return $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+
+        $user = $this->attachUserRole($user->id,'customer');
 
         if($user){
             return $this->authenticate($request);
         }
     }
 
+    /**
+     * Attach a role to a user
+     *
+     * @param $userId
+     * @param $role
+     * @return mixed
+     */
+    private function attachUserRole($userId, $role){
+        $user = User::findOrFail($userId);
+        $roleId = Role::where(['name' => $role])->first();
+
+        $user->roles()->attach($roleId);
+        return $user;
+    }
+
+    /**
+     * Refresh the token of a logged in user
+     */
     public function refreshToken(){
         $token = JWTAuth::getToken();
         if(! $token){
