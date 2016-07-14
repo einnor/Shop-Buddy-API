@@ -3,6 +3,8 @@
 namespace App\ShopBuddy\Cart;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\ShopBuddy\Product\Product;
 
 class Cart extends Model
 {
@@ -16,6 +18,10 @@ class Cart extends Model
     ];
 
     public function user() {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
+    }
+
+    public function products() {
+        return $this->hasMany(Product::class);
     }
 }

@@ -4,7 +4,9 @@
 namespace App\ShopBuddy\Cart;
 
 
-class ClientRepository
+use App\User;
+
+class CartRepository
 {
 
     protected $user;
@@ -15,33 +17,28 @@ class ClientRepository
     }
 
     /**
-     * Add a cart record in the carts table
+     * Add a cart record in the carts table and associate it with a user
      * @param array $data
+     * @param User $user
      * @return mixed
      */
-    public function createCart(array $data) {
-
-        return Cart::create([
-            'user_id'           =>         $this->user->id,
-            'store_name'        =>         $data['store_name'],
-            'store_url'         =>         $data['store_url'],
-            'total_price'       =>         $data['totla_price'],
-        ]);
+    public function createCart(array $data, User $user) {
+        $cart = new Cart($data);
+        return $user->carts()->save($cart);
     }
 
     /**
      * Update cart details
      * @param array $data
+     * @param User $user
      * @param $id
      * @return mixed
      */
-    public function updateCart(array $data, $id){
-        $cart = Cart::findOrFail($id);
-        return $cart->update([
-            'store_name'        =>         $data['store_name'],
-            'store_url'         =>         $data['store_url'],
-            'total_price'       =>         $data['totla_price'],
-        ]);
+    public function updateCart(array $data, User $user, $id){
+        $cart = new Cart($data);
+        return $user->carts()->filter(function($oldCart) use($id){
+            return $oldCart->findOrFail($id);
+        })->update($cart);
     }
 
     /*
