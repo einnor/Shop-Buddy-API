@@ -37,6 +37,6 @@ class CheckoutController extends Controller
 
         $cart = $this->cartRepository->checkOut($request->all());
 
-        return $this->response->collection($cart, new CartTransformer())->setStatusCode(201);
+        return $this->response->item($cart, new CartTransformer())->setStatusCode(201);
     }
 }
