@@ -20,24 +20,22 @@ class CartRepository
     /**
      * Add a cart record in the carts table and associate it with a user
      * @param array $data
-     * @param User $user
      * @return mixed
      */
-    public function createCart(array $data, User $user) {
+    public function createCart(array $data) {
         $cart = new Cart($data);
-        return $user->carts()->save($cart);
+        return $this->user->carts()->save($cart);
     }
 
     /**
      * Update cart details
      * @param array $data
-     * @param User $user
      * @param $id
      * @return mixed
      */
-    public function updateCart(array $data, User $user, $id){
+    public function updateCart(array $data, $id){
         $cart = new Cart($data);
-        return $user->carts()->filter(function($oldCart) use($id){
+        return $this->user->carts()->filter(function($oldCart) use($id){
             return $oldCart->findOrFail($id);
         })->update($cart);
     }
@@ -68,7 +66,17 @@ class CartRepository
     }
 
     //TODO checkout method
-    public function checkOut() {
+    public function checkOut(array $data) {
+        //Get cart details only
+        $cart_details_array = array_except($data, ['items']);
 
+        //Persist cart details in DB
+        $cart = $this->createCart($cart_details_array);
+
+        //Get cart items (products)
+        $products_array = array_only($data, ['items']);
+
+        //Persist cart items(products) in DB
+        return $cart->products()->saveMany($products_array);
     }
 }
