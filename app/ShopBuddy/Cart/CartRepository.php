@@ -3,7 +3,7 @@
 
 namespace App\ShopBuddy\Cart;
 
-
+use App\Http\Controllers\Auth\AuthController;
 use App\User;
 
 class CartRepository
@@ -13,7 +13,8 @@ class CartRepository
 
     public function __construct()
     {
-        $this->user = Auth::user();
+        $auth = new AuthController();
+        $this->user = $auth->showUser();
     }
 
     /**
@@ -64,5 +65,10 @@ class CartRepository
      */
     public function getCartById($id){
         return Cart::findOrFail($id)->get();
+    }
+
+    //TODO checkout method
+    public function checkOut() {
+
     }
 }

@@ -5,7 +5,6 @@ namespace App\ShopBuddy\Product;
 
 
 use App\ShopBuddy\Cart\Cart;
-use App\ShopBuddy\Cart\CartRepository;
 
 class ProductRepository
 {
