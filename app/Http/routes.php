@@ -35,4 +35,7 @@ $api->version('v1', function ($api) {
     $api->post('/user/register', 'App\Http\Controllers\Auth\AuthController@registerUser');
     $api->post('/user', 'App\Http\Controllers\Auth\AuthController@showUser');
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
+
+    //Checkout
+    $api->post('/user/checkout', 'App\Http\Controllers\CheckoutController@checkout');
 });
