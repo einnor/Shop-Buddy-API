@@ -87,6 +87,14 @@ class AuthController extends Controller
         return $this->response->array(compact('user'))->setStatusCode(200);
     }
 
+    public function authenticateRequest() {
+        $user =  JWTAuth::parseToken()->toUser();
+        if(! $user){
+            return false;
+        }
+        return $user;
+    }
+
     /**
      * Register a new user and give them a default role of 'customer'
      *

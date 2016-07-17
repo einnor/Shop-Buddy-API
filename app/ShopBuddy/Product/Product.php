@@ -10,10 +10,17 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'user_id',
-        'store_name',
-        'store_url',
-        'total_price'
+        'asin_code',
+        'name',
+        'price',
+        'quantity',
+        'url',
+        'color',
+        'weight',
+        'length',
+        'width',
+        'height',
+        'size'
     ];
 
     public function cart() {

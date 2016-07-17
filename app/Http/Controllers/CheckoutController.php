@@ -32,6 +32,7 @@ class CheckoutController extends Controller
     }
 
     /**
+     * Checkout action
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -39,8 +40,8 @@ class CheckoutController extends Controller
         $this->cartRepository = new CartRepository();
         $this->validate($request, [
             'store_name' => 'required|max:255',
-            'store_url' => 'required|url|max:255',
-            'total_price' => 'required|numeric|max:255',
+            'store_url' => 'required|max:255',
+            'total_price' => 'required|numeric',
         ]);
 
         $cart = $this->cartRepository->checkOut($request->all());

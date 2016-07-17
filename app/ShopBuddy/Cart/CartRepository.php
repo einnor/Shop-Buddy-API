@@ -3,8 +3,11 @@
 
 namespace App\ShopBuddy\Cart;
 
+
 use App\Http\Controllers\Auth\AuthController;
-use App\User;
+use App\ShopBuddy\Product\Product;
+use Illuminate\Support\Collection;
+
 
 class CartRepository
 {
@@ -14,7 +17,7 @@ class CartRepository
     public function __construct()
     {
         $auth = new AuthController();
-        $this->user = $auth->showUser();
+        $this->user = $auth->authenticateRequest();
     }
 
     /**
@@ -65,7 +68,11 @@ class CartRepository
         return Cart::findOrFail($id)->get();
     }
 
-    //TODO checkout method
+    /**
+     * Checkout method
+     * @param array $data
+     * @return mixed
+     */
     public function checkOut(array $data) {
         //Get cart details only
         $cart_details_array = array_except($data, ['items']);
@@ -75,8 +82,13 @@ class CartRepository
 
         //Get cart items (products)
         $products_array = array_only($data, ['items']);
+        $products = new Collection($products_array['items']);
 
         //Persist cart items(products) in DB
-        return $cart->products()->saveMany($products_array);
+        $cart->products()->saveMany($products->map(function($product){
+            return new Product($product);
+        }));
+
+        return $cart;
     }
 }
