@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ShopBuddy\Cart\CartRepository;
-use App\ShopBuddy\Transformers\V1\CartTransformer;
+use App\ShopBuddy\Product\ProductRepository;
+use App\ShopBuddy\Transformers\CartTransformer;
+use App\ShopBuddy\Transformers\ProductTransformer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,12 +18,17 @@ class CheckoutController extends Controller
     protected $cartRepository;
 
     /**
+     * @var $productRepository
+     */
+    protected $productRepository;
+
+    /**
      * CheckoutController constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->cartRepository = new CartRepository();
+
     }
 
     /**
@@ -29,6 +36,7 @@ class CheckoutController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function checkout(Request $request){
+        $this->cartRepository = new CartRepository();
         $this->validate($request, [
             'store_name' => 'required|max:255',
             'store_url' => 'required|url|max:255',
@@ -38,5 +46,13 @@ class CheckoutController extends Controller
         $cart = $this->cartRepository->checkOut($request->all());
 
         return $this->response->item($cart, new CartTransformer())->setStatusCode(201);
+    }
+
+    public function getAmazonProductAttributes(Request $request) {
+        $this->productRepository = new ProductRepository();
+        $attributes = [];
+        $attributes = $this->productRepository->getAmazonProductAttributes($request->all());
+
+        return $this->response->array(compact('attributes'))->setStatusCode(200);
     }
 }

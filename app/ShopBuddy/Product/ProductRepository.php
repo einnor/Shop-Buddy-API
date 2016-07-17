@@ -5,6 +5,7 @@ namespace App\ShopBuddy\Product;
 
 
 use App\ShopBuddy\Cart\Cart;
+use Illuminate\Support\Collection;
 
 class ProductRepository
 {
@@ -62,5 +63,42 @@ class ProductRepository
      */
     public function getProductById($id){
         return Product::findOrFail($id)->get();
+    }
+
+    /**
+     * Takes a json array of asin code(s)
+     * @param array $data
+     * @return string
+     */
+    public function getAmazonProductAttributes(array $data){
+
+//        $public = env('AMAZON_PUBLIC_KEY'); //amazon public key here
+        $public = 'AKIAIX4VTDIKSWDU3RCA'; //amazon public key here
+        $private = 'ReQt6CWiC2ediNGTzOHNQHb0zsbXZv9Hw1+9gAhT'; //amazon private/secret key here
+        $site = 'com'; //amazon region
+        $affiliate_id = 'ASSOCIATE TAG'; //amazon affiliate id
+
+        $amazon = new AmazonProductAPI($public, $private, $site, $affiliate_id);
+
+        $asin_codes = new Collection($data['asin_codes']);
+
+        $attributes = $asin_codes->map(function($asin_code) use($amazon){
+            $result = $amazon->getItemByAsin($asin_code);
+
+            $attr = [];
+
+            $attr[$asin_code]['weight'] = $result->Items->Item->ItemAttributes->PackageDimensions->Weight;
+            $attr[$asin_code]['length'] = $result->Items->Item->ItemAttributes->PackageDimensions->Length;
+            $attr[$asin_code]['width'] = $result->Items->Item->ItemAttributes->PackageDimensions->Width;
+            $attr[$asin_code]['height'] = $result->Items->Item->ItemAttributes->PackageDimensions->Height;
+            $attr[$asin_code]['color'] = $result->Items->Item->ItemAttributes->Color;
+            $attr[$asin_code]['amount'] = $result->Items->Item->OfferSummary->LowestNewPrice->Amount;
+            $attr[$asin_code]['currency_code'] = $result->Items->Item->OfferSummary->LowestNewPrice->CurrencyCode;
+            $attr[$asin_code]['formatted_price'] = $result->Items->Item->OfferSummary->LowestNewPrice->FormattedPrice;
+
+            return $attr;
+        });
+
+        return $attributes;
     }
 }

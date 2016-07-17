@@ -31,7 +31,7 @@ DEALINGS IN THE SOFTWARE.
 
 namespace App\ShopBuddy\Product;
 
-use App\ShopBuddy\Product\AmazonProductAPISignedRequest;
+//use App\ShopBuddy\Product\AmazonProductAPISignedRequest;
 
 
 class AmazonProductAPI

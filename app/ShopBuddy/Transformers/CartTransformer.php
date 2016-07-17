@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ShopBuddy\Transformers\V1;
+namespace App\ShopBuddy\Transformers;
 
 use App\ShopBuddy\Cart\Cart;
 

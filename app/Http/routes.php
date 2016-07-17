@@ -37,5 +37,6 @@ $api->version('v1', function ($api) {
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
 
     //Checkout
+    $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
     $api->post('/user/checkout', 'App\Http\Controllers\CheckoutController@checkout');
 });
