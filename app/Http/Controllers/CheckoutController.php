@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ShopBuddy\Cart\CartRepository;
+use App\ShopBuddy\PesapalIntegration;
 use App\ShopBuddy\Product\ProductRepository;
 use App\ShopBuddy\Transformers\CartTransformer;
 use App\ShopBuddy\Transformers\ProductTransformer;
@@ -44,16 +45,26 @@ class CheckoutController extends Controller
             'total_price' => 'required|numeric',
         ]);
 
-        $cart = $this->cartRepository->checkOut($request->all());
+        $iframeSource = $this->cartRepository->checkOut($request->all());
 
-        return $this->response->item($cart, new CartTransformer())->setStatusCode(201);
+        return $this->response->array(compact('iframeSource'))->setStatusCode(200);
     }
 
+    /**
+     * Get Attributes of Amazon Products using their ASIN codes
+     * @param Request $request
+     * @return mixed
+     */
     public function getAmazonProductAttributes(Request $request) {
         $this->productRepository = new ProductRepository();
         $attributes = [];
         $attributes = $this->productRepository->getAmazonProductAttributes($request->all());
 
         return $this->response->array(compact('attributes'))->setStatusCode(200);
+    }
+
+    public function listen() {
+        $pesapal = new PesapalIntegration();
+        $pesapal->listen();
     }
 }

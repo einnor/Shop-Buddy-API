@@ -39,4 +39,7 @@ $api->version('v1', function ($api) {
     //Checkout
     $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
     $api->post('/user/checkout', 'App\Http\Controllers\CheckoutController@checkout');
+
+    // Pesapal IPN Listener
+    $api->post('/pesapal/ipn/listener', 'App\Http\Controllers\CheckoutController@listen');
 });
