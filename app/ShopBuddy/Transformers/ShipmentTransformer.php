@@ -3,6 +3,7 @@
 namespace App\ShopBuddy\Transformers;
 
 use App\ShopBuddy\Shipment\Shipment;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 class ShipmentTransformer extends TransformerAbstract
@@ -27,6 +28,7 @@ class ShipmentTransformer extends TransformerAbstract
             'shipmentId'    =>      (int) $shipment->id,
             'status'        =>      $shipment->status,
             'comment'       =>      $shipment->comment,
+            'date'          =>      (new Carbon($shipment->created_at))->toDateTimeString(),
         ];
     }
 

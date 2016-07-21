@@ -4,6 +4,7 @@
 namespace App\ShopBuddy\Shipment;
 
 
+use App\Http\Controllers\Auth\AuthController;
 use App\ShopBuddy\Cart\Cart;
 
 class ShipmentRepository

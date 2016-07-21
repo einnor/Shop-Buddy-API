@@ -57,7 +57,7 @@ $api->version('v1', function ($api) {
     /**
      * Shipment
      */
-    $api->get('/carts/shipments/{cartId}', 'App\Http\Controllers\ShipmentsController@userShipments');
+    $api->get('/carts/shipments/{cartId}', 'App\Http\Controllers\ShipmentsController@cartShipments');
     $api->get('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@shipment');
     $api->put('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@updateShipment');
     $api->delete('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@deleteShipment');
