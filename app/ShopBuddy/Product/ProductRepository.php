@@ -29,15 +29,12 @@ class ProductRepository
     /**
      * Update product details
      * @param array $data
-     * @param Cart $cart
      * @param $id
      * @return mixed
      */
-    public function updateProduct(array $data, Cart $cart, $id){
-        $product = new Product($data);
-        return $cart->products()->filter(function($oldProduct) use($id){
-            return $oldProduct->findOrFail($id);
-        })->update($product);
+    public function updateProduct(array $data, $id){
+        $product = Product::findOrFail($id);
+        return $product->update($data);
     }
 
     /*

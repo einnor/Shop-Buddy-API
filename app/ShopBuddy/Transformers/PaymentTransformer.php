@@ -39,6 +39,6 @@ class PaymentTransformer extends TransformerAbstract
     public function includeCart(Payment $payment)
     {
         $cart = $payment->cart;
-        return $this->collection($cart, new CartTransformer);
+        return $this->item($cart, new CartTransformer);
     }
 }

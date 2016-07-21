@@ -38,6 +38,6 @@ class ShipmentTransformer extends TransformerAbstract
     public function includeCart(Shipment $shipment)
     {
         $cart = $shipment->cart;
-        return $this->collection($cart, new CartTransformer);
+        return $this->item($cart, new CartTransformer);
     }
 }

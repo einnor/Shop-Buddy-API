@@ -17,7 +17,7 @@ class CartTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'user',
         'payment',
-        'shipment',
+        'shipments',
         'products',
     ];
 
@@ -62,10 +62,10 @@ class CartTransformer extends TransformerAbstract
      * @param Cart $cart
      * @return \League\Fractal\Resource\Item
      */
-    public function includeShipment(Cart $cart)
+    public function includeShipments(Cart $cart)
     {
-        $shipment = $cart->shipment;
-        return $this->item($shipment, new ShipmentTransformer());
+        $shipments = $cart->shipments;
+        return $this->collection($shipments, new ShipmentTransformer());
     }
 
     /**

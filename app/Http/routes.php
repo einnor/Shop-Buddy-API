@@ -30,19 +30,36 @@ $api->version('v1', function ($api) {
         return ['Buddy' => 'Success! API calls work'];
     });
 
-    //Authentication
+    /**
+     * Authentication
+     */
     $api->post('/user/authenticate', 'App\Http\Controllers\Auth\AuthController@authenticate');
     $api->post('/user/register', 'App\Http\Controllers\Auth\AuthController@registerUser');
     $api->post('/user', 'App\Http\Controllers\Auth\AuthController@showUser');
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
 
-    //Checkout
+    /**
+     * Checkout
+     */
     $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
     $api->post('/user/checkout', 'App\Http\Controllers\CheckoutController@checkout');
 
-    // Pesapal IPN Listener
+    /**
+     * Pesapal IPN Listener
+     */
     $api->post('/pesapal/ipn/listener', 'App\Http\Controllers\CheckoutController@listen');
 
-    //Transaction History
-    $api->get('users/transactions/{id}', 'App\Http\Controllers\CartsController@userTransactionHistory');
+    /**
+     * Transaction History
+     */
+    $api->get('/users/transactions/{id}', 'App\Http\Controllers\CartsController@userTransactionHistory');
+
+    /**
+     * Shipment
+     */
+    $api->get('/carts/shipments/{cartId}', 'App\Http\Controllers\ShipmentsController@userShipments');
+    $api->get('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@shipment');
+    $api->put('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@updateShipment');
+    $api->delete('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@deleteShipment');
+    $api->post('carts/shipments/{cartId}', 'App\Http\Controllers\ShipmentsController@createShipment');
 });
