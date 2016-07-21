@@ -5,6 +5,7 @@ namespace App\ShopBuddy\Cart;
 
 
 use App\Http\Controllers\Auth\AuthController;
+use App\ShopBuddy\Payment\Payment;
 use App\ShopBuddy\PesapalIntegration;
 use App\ShopBuddy\Product\Product;
 use Illuminate\Support\Collection;
@@ -90,15 +91,35 @@ class CartRepository
             return new Product($product);
         }));
 
+        //Persist preliminary payment details
+        $payment = new Payment([
+            'merchant_reference' => $cart->id,
+            'status' => 'PENDING'
+        ]);
+        $cart->payment()->save($payment);
+
         $pesapal = new PesapalIntegration();
 
         return $pesapal->getIframeSource($data, $cart, $this->user);
     }
 
+    /**
+     * @param $status
+     * @param $pesapal_transaction_tracking_id
+     * @param $id
+     */
     public function changePesapalTransactionStatus($status, $pesapal_transaction_tracking_id, $id) {
         $cart = Cart::findOrFail($id);
         $cart->payment->status = $status;
         $cart->payment->transaction_tracking_id = $pesapal_transaction_tracking_id;
         $cart->save();
+    }
+
+    /**
+     * @param $userId
+     * @return mixed
+     */
+    public function userTransactionHistory($userId) {
+        return Cart::where(['user_id' => $userId])->get();
     }
 }

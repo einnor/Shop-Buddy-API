@@ -42,4 +42,7 @@ $api->version('v1', function ($api) {
 
     // Pesapal IPN Listener
     $api->post('/pesapal/ipn/listener', 'App\Http\Controllers\CheckoutController@listen');
+
+    //Transaction History
+    $api->get('users/transactions/{id}', 'App\Http\Controllers\CartsController@userTransactionHistory');
 });

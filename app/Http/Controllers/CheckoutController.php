@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\ShopBuddy\Cart\CartRepository;
 use App\ShopBuddy\PesapalIntegration;
 use App\ShopBuddy\Product\ProductRepository;
-use App\ShopBuddy\Transformers\CartTransformer;
-use App\ShopBuddy\Transformers\ProductTransformer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,7 +27,6 @@ class CheckoutController extends Controller
     public function __construct()
     {
         parent::__construct();
-
     }
 
     /**
@@ -63,6 +60,9 @@ class CheckoutController extends Controller
         return $this->response->array(compact('attributes'))->setStatusCode(200);
     }
 
+    /**
+     * Listen from response from Pesapal
+     */
     public function listen() {
         $pesapal = new PesapalIntegration();
         $pesapal->listen();
