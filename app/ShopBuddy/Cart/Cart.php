@@ -3,6 +3,7 @@
 namespace App\ShopBuddy\Cart;
 
 use App\ShopBuddy\Payment\Payment;
+use App\ShopBuddy\Shipment\Shipment;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\ShopBuddy\Product\Product;
@@ -28,5 +29,9 @@ class Cart extends Model
 
     public function payment() {
         return $this->hasOne(Payment::class);
+    }
+
+    public function shipment() {
+        return $this->hasOne(Shipment::class);
     }
 }
