@@ -131,24 +131,18 @@
     "groupTitle": "Authentication"
   },
   {
-    "type": "get",
-    "url": "/user/:id",
-    "title": "Request User information",
-    "name": "GetUser",
-    "group": "User",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID.</p>"
-          }
-        ]
+    "type": "post",
+    "url": "/api/user/checkout",
+    "title": "Checkout action",
+    "name": "CheckOut",
+    "group": "CheckOut",
+    "examples": [
+      {
+        "title": "Example Usage",
+        "content": "{\n        \"store_name\": \"Amazon\",\n        \"store_url\": \"https:://www.amazon.com\",\n        \"total_price\": 120000,\n        \"items\": [\n            {\n                \"asin_code\": \"B01FFQEWE8\",\n                \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                \"price\": 189799,\n                \"quantity\": 1,\n                \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                \"color\": \"Black\",\n                \"weight\": 67.5,\n                \"length\": 6220,\n                \"width\": 3700,\n                \"height\": 800,\n                \"size\": \"50x30\"\n            }\n        ]\n     }",
+        "type": "json"
       }
-    },
+    ],
     "success": {
       "fields": {
         "Success 200": [
@@ -156,22 +150,15 @@
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
+            "field": "iframeSource",
+            "description": "<p>Pesapal iframe source.</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"iframeSource\": {\n         \"GET&http%3A%2F%2Fdemo.pesapal.com%2Fapi%2FPostPesapalDirectOrderV4&oauth_callback%3Dhttp%253A%252F%252Fshopbuddy.co.ke%252Fpayments%252Fcallback%26oauth_consumer_key%3D2WVcrLQku%252Fh1dgOU0oTUOgTjGYq%252BZity%26oauth_nonce%3D%257BEBF66D2C-FC11-5D37-0854-BF20278E1E7C%257D%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1469730513%26oauth_version%3D1.0%26pesapal_request_data%3D%2526lt%253B%253Fxml%2520version%253D%2526quot%253B1.0%2526quot%253B%2520encoding%253D%2526quot%253Butf-8%2526quot%253B%253F%2526gt%253B%2526lt%253BPesapalDirectOrderInfo%2520xmlns%253Axsi%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema-instance%2526quot%253B%2520xmlns%253Axsd%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema%2526quot%253B%2520Amount%253D%2526quot%253B120000%2526quot%253B%2520Description%253D%2526quot%253BORDER%2520DESCRIPTION%2526quot%253B%2520Type%253D%2526quot%253BMERCHANT%2526quot%253B%2520Reference%253D%2526quot%253B4%2526quot%253B%2520FirstName%253D%2526quot%253BRonnie%2526quot%253B%2520LastName%253D%2526quot%253BNyaga%2526quot%253B%2520Email%253D%2526quot%253Bronnienyaga%2540gmail.com%2526quot%253B%2520PhoneNumber%253D%2526quot%253B%2526quot%253B%2520xmlns%253D%2526quot%253Bhttp%253A%252F%252Fwww.pesapal.com%2526quot%253B%2520%252F%2526gt%253B\"\n            }\n}",
           "type": "json"
         }
       ]
@@ -182,22 +169,78 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The id of the User was not found.</p>"
+            "field": "Exception",
+            "description": "<p>Something went wrong.</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": \"UserNotFound\"\n}",
+          "content": "HTTP/1.1 500 Exception\n{\n     \"message\": \"Something went wrong.\",\n      \"status_code\": 500\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/CheckoutController.php",
-    "groupTitle": "User"
+    "groupTitle": "CheckOut"
+  },
+  {
+    "type": "post",
+    "url": "/api/products/attributes",
+    "title": "Query attributes of Amazon products",
+    "name": "GetAmazonProducts",
+    "group": "CheckOut",
+    "examples": [
+      {
+        "title": "Example Usage",
+        "content": "{\n           \"asin_codes\": [\n               \"B01FFQEWE8\",\n               \"B01FFQEWE8\"\n           ]\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "attributes",
+            "description": "<p>Attributes JSON response.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n\n{\n    \"attributes\": [\n    {\n        \"B01FFQEWE8\": {\n            \"weight\": {\n                \"0\": \"7900\",\n                      \"@attributes\": {\n                    \"Units\": \"hundredths-pounds\"\n                      }\n                    },\n            \"length\": {\n                \"0\": \"6220\",\n                      \"@attributes\": {\n                    \"Units\": \"hundredths-inches\"\n                      }\n                    },\n                    \"width\": {\n                \"0\": \"3700\",\n                      \"@attributes\": {\n                    \"Units\": \"hundredths-inches\"\n                      }\n                    },\n                    \"height\": {\n                \"0\": \"800\",\n                      \"@attributes\": {\n                    \"Units\": \"hundredths-inches\"\n                      }\n                    },\n                    \"color\": {\n                \"0\": \"Black\"\n                    },\n                    \"amount\": {\n                \"0\": \"198929\"\n                    },\n                    \"currency_code\": {\n                \"0\": \"USD\"\n                    },\n                    \"formatted_price\": {\n                \"0\": \"$1,989.29\"\n                    }\n                  }\n                },\n                {\n                    \"B01FFQEWE8\": {\n                    \"weight\": {\n                        \"0\": \"7900\",\n                      \"@attributes\": {\n                            \"Units\": \"hundredths-pounds\"\n                      }\n                    },\n                    \"length\": {\n                        \"0\": \"6220\",\n                      \"@attributes\": {\n                            \"Units\": \"hundredths-inches\"\n                      }\n                    },\n                    \"width\": {\n                        \"0\": \"3700\",\n                      \"@attributes\": {\n                            \"Units\": \"hundredths-inches\"\n                      }\n                    },\n                    \"height\": {\n                        \"0\": \"800\",\n                      \"@attributes\": {\n                            \"Units\": \"hundredths-inches\"\n                      }\n                    },\n                    \"color\": {\n                        \"0\": \"Black\"\n                    },\n                    \"amount\": {\n                        \"0\": \"198929\"\n                    },\n                    \"currency_code\": {\n                        \"0\": \"USD\"\n                    },\n                    \"formatted_price\": {\n                        \"0\": \"$1,989.29\"\n                    }\n                }\n        }\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Exception",
+            "description": "<p>Something went wrong.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Exception\n{\n     \"message\": \"Something went wrong.\",\n      \"status_code\": 500\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CheckoutController.php",
+    "groupTitle": "CheckOut"
   },
   {
     "type": "post",
