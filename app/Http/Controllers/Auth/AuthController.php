@@ -48,8 +48,30 @@ class AuthController extends Controller
     }
 
     /**
-     * Authenticate login request
+     * @api {post} /api/user/authenticate Authenticate login request
+     * @apiName AuthenticateUser
+     * @apiGroup Authentication
+     *
      * @param Request $request
+     * @apiParam {String} email Users unique email.
+     * @apiParam {String} password Users password.
+     *
+     * @apiSuccess {String} token Session token of the User.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "token": "xxx"
+     *     }
+     *
+     * @apiError Unauthorized User credentials are not correct!.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorized Access
+     *     {
+     *          "message": "User credentials are not correct!",
+     *          "status_code": 401
+     *     }
      */
     public function authenticate(Request $request){
         $credentials = $request->only('email', 'password');
@@ -67,9 +89,40 @@ class AuthController extends Controller
     }
 
     /**
-     * Get details of a logged in user using their token
+     * @api {post} /api/user Request User information using the token
+     * @apiName GetUser
+     * @apiGroup User
+     *
+     * @apiParam {String} token Users unique token.
      *
      * @return \Dingo\Api\Http\Response\Factory|void
+     *
+     * @apiSuccess {String} name Name of the User.
+     * @apiSuccess {String} email  Email of the User.
+     * @apiSuccess {Datetime} created_at  Date and time when the User was created.
+     * @apiSuccess {Datetime} updated_at  Date and time when the User was updated.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *          "user": [
+     *              "name": "John Doe",
+     *              "email": "john.doe@gmail.com",
+     *              "created_at": "2016-07-21 05:33:49",
+     *              "updated_at": "2016-07-21 05:33:49"
+     *          ]
+     *     }
+     *
+     * @apiError UserNotFound The id of the User was not found.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Not Found
+     *     {
+     *          "message": "Token is invalid",
+     *          "status_code": 500,
+     *     }
+     *
+     *
      */
     public function showUser(){
         try{
@@ -78,11 +131,11 @@ class AuthController extends Controller
                 return $this->response->errorNotFound('User not found');
             }
         }catch(TokenInvalidException $ex){
-            return $this->response-error('Token is invalid');
+            return $this->response->error('Token is invalid', 401);
         }catch(TokenExpiredException $ex){
-            return $this->response-error('Token has expired');
+            return $this->response->error('Token has expired', 401);
         }catch(TokenBlacklistedException $ex){
-            return $this->response-error('Token is blacklisted');
+            return $this->response->error('Token is blacklisted', 401);
         }
         return $this->response->array(compact('user'))->setStatusCode(200);
     }
@@ -96,9 +149,32 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a new user and give them a default role of 'customer'
+     * @api {post} /api/user Register a new user and give them a default role of 'customer'
+     * @apiName RegisterUser
+     * @apiGroup User
      *
      * @param Request $request
+     * @apiParam {String} name Users name.
+     * @apiParam {String} email Users email.
+     * @apiParam {String} password Users password.
+     * @apiParam {String} password_confirmation Users password confirmation.
+     *
+     * @apiSuccess {String} token User token.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "token": "xxx"
+     *     }
+     *
+     * @apiError ValidationException Input failed validation.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *          "message": "The given data failed to pass validation.",
+    *           "status_code": 500
+     *     }
      */
     public function registerUser(Request $request)
     {
@@ -134,7 +210,28 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh the token of a logged in user
+     * @api {post} /api/token/refresh Refresh the token of a logged in user
+     * @apiName RefreshToken
+     * @apiGroup Authentication
+     *
+     * @apiParam {String} token User unique token.
+     *
+     * @apiSuccess {String} token User token.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "refreshToken": "xxx"
+     *     }
+     *
+     * @apiError Unauthorized Token is invalid.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorized
+     *     {
+     *          "message": "Token is invalid | Token has expired | Token is blacklisted",
+     *          "status_code": 401
+     *     }
      */
     public function refreshToken(){
         $token = JWTAuth::getToken();
