@@ -67,7 +67,7 @@ class CartRepository
      * @return mixed
      */
     public function getCartById($id){
-        return Cart::findOrFail($id)->get();
+        return Cart::findOrFail($id)->first();
     }
 
     /**

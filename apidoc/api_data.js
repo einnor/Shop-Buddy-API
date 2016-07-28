@@ -131,6 +131,572 @@ define({ "api": [
     "groupTitle": "Authentication"
   },
   {
+    "type": "get",
+    "url": "/carts/{$id}",
+    "title": "Request Cart information",
+    "name": "GetCart",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts/{$id}?include=user",
+    "title": "Request Cart information With Owner information",
+    "name": "GetCartWithOwners",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>Owner of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"user\": {\n                    \"data\": {\n                        \"userId\": 1,\n                        \"roles\": null,\n                        \"name\": \"Ronnie Nyaga\",\n                        \"email\": \"ronnienyaga@gmail.com\"\n                    }\n                }\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts/{$id}?include=payment",
+    "title": "Request Cart information With Payment information",
+    "name": "GetCartWithPayment",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "payment",
+            "description": "<p>Payment of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"payment\": {\n                    \"data\": {\n                        \"paymentId\": 4,\n                        \"transaction_tracking_id\": \"\",\n                        \"merchant_reference\": \"4\",\n                        \"status\": \"PENDING\"\n                    }\n                }\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts/{$id}?include=products",
+    "title": "Request Cart information With Products information",
+    "name": "GetCartWithProducts",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "products",
+            "description": "<p>Products of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"products\": {\n                    \"data\": [\n                    {\n                        \"productId\": 10,\n                        \"asinCode\": \"B01FFQEWE8\",\n                        \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                        \"price\": 9999.99,\n                        \"quantity\": 1,\n                        \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                        \"color\": \"Black\",\n                        \"weight\": \"67.50\",\n                        \"length\": \"999.99\",\n                        \"width\": \"999.99\",\n                        \"height\": \"800.00\",\n                        \"size\": \"50.00\"\n                    }\n                    ]\n                }\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts/{$id}?include=shipments",
+    "title": "Request Cart information With Shipping information",
+    "name": "GetCartWithShipments",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "objects",
+            "optional": false,
+            "field": "shipments",
+            "description": "<p>Shipments of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"shipments\": {\n                    \"data\": [\n                    {\n                        \"shipmentId\": 1,\n                        \"status\": \"In warehouse\",\n                        \"comment\": \"No comment\",\n                        \"date\": \"2016-07-21 11:25:24\"\n                    },\n                    {\n                        \"shipmentId\": 2,\n                        \"status\": \"On Transit\",\n                        \"comment\": \"Expected to arrive in 3 days\",\n                        \"date\": \"2016-07-21 11:26:46\"\n                    },\n                    {\n                        \"shipmentId\": 3,\n                        \"status\": \"Arrived\",\n                        \"comment\": \"Arrived at final checkpoint\",\n                        \"date\": \"2016-07-21 11:27:13\"\n                    },\n                    {\n                        \"shipmentId\": 4,\n                        \"status\": \"Delivered\",\n                        \"comment\": \"Received by the customer\",\n                        \"date\": \"2016-07-21 11:27:36\"\n                    }\n                    ]\n                }\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts",
+    "title": "Request Carts information",
+    "name": "GetCarts",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts?include=user",
+    "title": "Request Carts information With Owner information",
+    "name": "GetCartsWithOwners",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>Owner of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"user\": {\n                    \"data\": {\n                        \"userId\": 1,\n                        \"roles\": null,\n                        \"name\": \"Ronnie Nyaga\",\n                        \"email\": \"ronnienyaga@gmail.com\"\n                    }\n                }\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts?include=payment",
+    "title": "Request Carts information With Payment information",
+    "name": "GetCartsWithPayments",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "payment",
+            "description": "<p>Payment of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"payment\": {\n                    \"data\": {\n                        \"paymentId\": 4,\n                        \"transaction_tracking_id\": \"\",\n                        \"merchant_reference\": \"4\",\n                        \"status\": \"PENDING\"\n                    }\n                }\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts?include=products",
+    "title": "Request Carts information With Products information",
+    "name": "GetCartsWithProducts",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "products",
+            "description": "<p>Products of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"products\": {\n                    \"data\": [\n                    {\n                        \"productId\": 10,\n                        \"asinCode\": \"B01FFQEWE8\",\n                        \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                        \"price\": 9999.99,\n                        \"quantity\": 1,\n                        \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                        \"color\": \"Black\",\n                        \"weight\": \"67.50\",\n                        \"length\": \"999.99\",\n                        \"width\": \"999.99\",\n                        \"height\": \"800.00\",\n                        \"size\": \"50.00\"\n                    }\n                    ]\n                }\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
+    "type": "get",
+    "url": "/carts?include=shipments",
+    "title": "Request Carts information With Shipping information",
+    "name": "GetCartsWithShipments",
+    "group": "Cart",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "objects",
+            "optional": false,
+            "field": "shipments",
+            "description": "<p>Shipments of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"shipments\": {\n                    \"data\": [\n                    {\n                        \"shipmentId\": 1,\n                        \"status\": \"In warehouse\",\n                        \"comment\": \"No comment\",\n                        \"date\": \"2016-07-21 11:25:24\"\n                    },\n                    {\n                        \"shipmentId\": 2,\n                        \"status\": \"On Transit\",\n                        \"comment\": \"Expected to arrive in 3 days\",\n                        \"date\": \"2016-07-21 11:26:46\"\n                    },\n                    {\n                        \"shipmentId\": 3,\n                        \"status\": \"Arrived\",\n                        \"comment\": \"Arrived at final checkpoint\",\n                        \"date\": \"2016-07-21 11:27:13\"\n                    },\n                    {\n                        \"shipmentId\": 4,\n                        \"status\": \"Delivered\",\n                        \"comment\": \"Received by the customer\",\n                        \"date\": \"2016-07-21 11:27:36\"\n                    }\n                    ]\n                }\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "Cart"
+  },
+  {
     "type": "post",
     "url": "/api/user/checkout",
     "title": "Checkout action",
@@ -323,6 +889,44 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Auth/AuthController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/api/users/transactions/{id}?include=products,payment,shipments",
+    "title": "User Transaction History",
+    "name": "GetUserTransactionHistory",
+    "group": "User",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n\n{\n    \"data\": [\n    {\n        \"cartId\": 1,\n        \"storeName\": \"Amazon\",\n        \"storeURL\": \"https:://www.amazon.com\",\n        \"totalPrice\": \"9999.99\",\n        \"payment\": {\n            \"data\": {\n                \"paymentId\": 1,\n                \"transaction_tracking_id\": \"\",\n                \"merchant_reference\": \"1\",\n                \"status\": \"\"\n            }\n        },\n        \"shipments\": {\n            \"data\": [\n                  {\n                      \"shipmentId\": 1,\n                    \"status\": \"In warehouse\",\n                    \"comment\": \"No comment\",\n                    \"date\": \"2016-07-21 11:25:24\"\n                  },\n                  {\n                      \"shipmentId\": 2,\n                    \"status\": \"On Transit\",\n                    \"comment\": \"Expected to arrive in 3 days\",\n                    \"date\": \"2016-07-21 11:26:46\"\n                  },\n                  {\n                      \"shipmentId\": 3,\n                    \"status\": \"Arrived\",\n                    \"comment\": \"Arrived at final checkpoint\",\n                    \"date\": \"2016-07-21 11:27:13\"\n                  },\n                  {\n                      \"shipmentId\": 4,\n                    \"status\": \"Delivered\",\n                    \"comment\": \"Received by the customer\",\n                    \"date\": \"2016-07-21 11:27:36\"\n                  }\n                ]\n              },\n              \"products\": {\n            \"data\": [\n                  {\n                      \"productId\": 1,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 2,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 3,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  }\n                ]\n              }\n            },\n            {\n                \"cartId\": 2,\n              \"storeName\": \"Amazon\",\n              \"storeURL\": \"https:://www.amazon.com\",\n              \"totalPrice\": \"9999.99\",\n              \"payment\": {\n                \"data\": {\n                    \"paymentId\": 2,\n                  \"transaction_tracking_id\": \"\",\n                  \"merchant_reference\": \"2\",\n                  \"status\": \"\"\n                }\n              },\n              \"shipments\": {\n                \"data\": []\n              },\n              \"products\": {\n                \"data\": [\n                  {\n                      \"productId\": 4,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 5,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 6,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  }\n                ]\n              }\n            },\n            {\n                \"cartId\": 3,\n              \"storeName\": \"Amazon\",\n              \"storeURL\": \"https:://www.amazon.com\",\n              \"totalPrice\": \"9999.99\",\n              \"payment\": {\n                \"data\": {\n                    \"paymentId\": 3,\n                  \"transaction_tracking_id\": \"\",\n                  \"merchant_reference\": \"3\",\n                  \"status\": \"\"\n                }\n              },\n              \"shipments\": {\n                \"data\": []\n              },\n              \"products\": {\n                \"data\": [\n                  {\n                      \"productId\": 7,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 8,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 9,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  }\n                ]\n              }\n            },\n            {\n                \"cartId\": 4,\n              \"storeName\": \"Amazon\",\n              \"storeURL\": \"https:://www.amazon.com\",\n              \"totalPrice\": \"9999.99\",\n              \"payment\": {\n                \"data\": {\n                    \"paymentId\": 4,\n                  \"transaction_tracking_id\": \"\",\n                  \"merchant_reference\": \"4\",\n                  \"status\": \"PENDING\"\n                }\n              },\n              \"shipments\": {\n                \"data\": []\n              },\n              \"products\": {\n                \"data\": [\n                  {\n                      \"productId\": 10,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 11,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  },\n                  {\n                      \"productId\": 12,\n                    \"asinCode\": \"B01FFQEWE8\",\n                    \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                    \"price\": 9999.99,\n                    \"quantity\": 1,\n                    \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                    \"color\": \"Black\",\n                    \"weight\": \"67.50\",\n                    \"length\": \"999.99\",\n                    \"width\": \"999.99\",\n                    \"height\": \"800.00\",\n                    \"size\": \"50.00\"\n                  }\n                ]\n              }\n            }\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Exception",
+            "description": "<p>Something went wrong.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Exception\n{\n     \"message\": \"Something went wrong\",\n     \"status_code\": 500,\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "User"
   },
   {

@@ -195,7 +195,7 @@ class CheckoutController extends Controller
         }
     ]
 }
-    
+
      *
      * @apiError Exception Something went wrong.
      *

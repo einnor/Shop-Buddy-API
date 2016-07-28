@@ -62,4 +62,10 @@ $api->version('v1', function ($api) {
     $api->put('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@updateShipment');
     $api->delete('/shipments/{id}', 'App\Http\Controllers\ShipmentsController@deleteShipment');
     $api->post('carts/shipments/{cartId}', 'App\Http\Controllers\ShipmentsController@createShipment');
+
+    /**
+     * Carts
+     */
+    $api->get('/carts', 'App\Http\Controllers\CartsController@getAllCarts');
+    $api->get('/carts/{id}', 'App\Http\Controllers\CartsController@getCartById');
 });

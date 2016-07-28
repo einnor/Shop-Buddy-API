@@ -31,7 +31,7 @@ class CartTransformer extends TransformerAbstract
             'cartId'            =>      (int) $cart->id,
             'storeName'         =>      $cart->store_name,
             'storeURL'          =>      $cart->store_url,
-            'totalPrice'        =>      $cart->total_price,
+            'totalPrice'        =>      (double) $cart->total_price,
         ];
     }
 
