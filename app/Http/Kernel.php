@@ -44,6 +44,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'cors'          => \Barryvdh\Cors\HandleCors::class,
         'auth'          => \App\Http\Middleware\Authenticate::class,
         'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can'           => \Illuminate\Foundation\Http\Middleware\Authorize::class,
@@ -55,6 +56,6 @@ class Kernel extends HttpKernel
         'ability'       => \Zizaco\Entrust\Middleware\EntrustAbility::class,
 
         'jwt.auth'      => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'jwt.refresh'   => \Tymon\JWTAuth\Middleware\RefreshToken::class
+        'jwt.refresh'   => \Tymon\JWTAuth\Middleware\RefreshToken::class,
     ];
 }
