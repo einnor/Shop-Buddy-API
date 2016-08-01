@@ -20,7 +20,7 @@ Route::get('/apidoc', function() {
 });
 
 $api = app('Dingo\Api\Routing\Router');
-$api->version('v1', function ($api) {
+$api->version('v1', ['middleware'=>'cors'], function ($api) {
     $api->get('/', function() {
         return ['Buddy' => 'Success! API calls work'];
     });
