@@ -14,6 +14,6 @@ class UsersTableSeeder extends Seeder
             'name'      =>  'Ronnie Nyaga',
             'email'     =>  'ronnienyaga@gmail.com',
             'password'  =>  bcrypt('password')
-        ]);
+        ])->roles()->attach(2); //Role 2 is Admin
     }
 }
