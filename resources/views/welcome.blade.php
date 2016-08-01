@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">ShopBuddy</div>
+                <div><a href="/apidoc">API Documentation</a></div>
             </div>
         </div>
     </body>

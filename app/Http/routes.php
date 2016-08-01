@@ -20,9 +20,13 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+ Route::get('/', function () {
+     return view('welcome');
+ });
+
+Route::get('/apidoc', function() {
+    return File::get(public_path() . '/apidoc/index.html');
+});
 
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {

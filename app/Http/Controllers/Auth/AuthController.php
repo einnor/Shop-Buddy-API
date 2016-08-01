@@ -61,7 +61,14 @@ class AuthController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *       "token": "xxx"
+     *          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY",
+                "currentUser": {
+                    "id": 8,
+                    "name": "Tom Keen",
+                    "email": "tom.keen@gmail.com",
+                    "created_at": "2016-08-01 06:07:20",
+                    "updated_at": "2016-08-01 06:07:20"
+                }
      *     }
      *
      * @apiError Unauthorized User credentials are not correct!.
@@ -170,7 +177,14 @@ class AuthController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *       "token": "xxx"
+     *          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY",
+                "currentUser": {
+                    "id": 8,
+                    "name": "Tom Keen",
+                    "email": "tom.keen@gmail.com",
+                    "created_at": "2016-08-01 06:07:20",
+                    "updated_at": "2016-08-01 06:07:20"
+                }
      *     }
      *
      * @apiError ValidationException Input failed validation.
