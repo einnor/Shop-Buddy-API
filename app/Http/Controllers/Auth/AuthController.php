@@ -82,10 +82,16 @@ class AuthController extends Controller
             if(! $token = JWTAuth::attempt($credentials)){
                 return $this->response->error('User credentials are not correct!', 401);
             }
+            else{
+                $currentUser =  JWTAuth::parseToken()->toUser($token);
+                if(! $currentUser){
+                    return $this->response->errorNotFound('User not found');
+                }
+            }
         }catch(JWTException $ex){
             return $this->response->error('Something went wrong!', 500);
         }
-        return $this->response->array(compact('token'))->setStatusCode(200);
+        return $this->response->array(compact('token','currentUser'))->setStatusCode(200);
     }
 
     /**
@@ -187,9 +193,9 @@ class AuthController extends Controller
 
         $user = $this->create($request->all());
 
-        $user = $this->attachUserRole($user->id,'customer');
+        $currentUser = $this->attachUserRole($user->id,'customer');
 
-        if($user){
+        if($currentUser){
             return $this->authenticate($request);
         }
     }
