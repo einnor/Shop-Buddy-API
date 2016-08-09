@@ -1061,7 +1061,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n            \"shipmentId\": 4,\n            \"status\": \"Delivered\",\n            \"comment\": \"Received by the customer\",\n            \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
           "type": "json"
         }
       ]

@@ -172,7 +172,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99\n            }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"createdAt\": \"2016-07-21 11:27:36\"\n            }\n        }",
           "type": "json"
         }
       ]
@@ -230,7 +230,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"user\": {\n                    \"data\": {\n                        \"userId\": 1,\n                        \"roles\": null,\n                        \"name\": \"Ronnie Nyaga\",\n                        \"email\": \"ronnienyaga@gmail.com\"\n                    }\n                }\n            }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"createdAt\": \"2016-07-21 11:27:36\"\n                \"user\": {\n                    \"data\": {\n                        \"userId\": 1,\n                        \"roles\": null,\n                        \"name\": \"Ronnie Nyaga\",\n                        \"email\": \"ronnienyaga@gmail.com\"\n                    }\n                }\n            }\n        }",
           "type": "json"
         }
       ]
@@ -288,7 +288,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"payment\": {\n                    \"data\": {\n                        \"paymentId\": 4,\n                        \"transaction_tracking_id\": \"\",\n                        \"merchant_reference\": \"4\",\n                        \"status\": \"PENDING\"\n                    }\n                }\n            }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"createdAt\": \"2016-07-21 11:27:36\"\n                \"payment\": {\n                    \"data\": {\n                        \"paymentId\": 4,\n                        \"transaction_tracking_id\": \"\",\n                        \"merchant_reference\": \"4\",\n                        \"status\": \"PENDING\"\n                    }\n                }\n            }\n        }",
           "type": "json"
         }
       ]
@@ -346,7 +346,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"products\": {\n                    \"data\": [\n                    {\n                        \"productId\": 10,\n                        \"asinCode\": \"B01FFQEWE8\",\n                        \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                        \"price\": 9999.99,\n                        \"quantity\": 1,\n                        \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                        \"color\": \"Black\",\n                        \"weight\": \"67.50\",\n                        \"length\": \"999.99\",\n                        \"width\": \"999.99\",\n                        \"height\": \"800.00\",\n                        \"size\": \"50.00\"\n                    }\n                    ]\n                }\n            }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"createdAt\": \"2016-07-21 11:27:36\"\n                \"products\": {\n                    \"data\": [\n                    {\n                        \"productId\": 10,\n                        \"asinCode\": \"B01FFQEWE8\",\n                        \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n                        \"price\": 9999.99,\n                        \"quantity\": 1,\n                        \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n                        \"color\": \"Black\",\n                        \"weight\": \"67.50\",\n                        \"length\": \"999.99\",\n                        \"width\": \"999.99\",\n                        \"height\": \"800.00\",\n                        \"size\": \"50.00\"\n                    }\n                    ]\n                }\n            }\n        }",
           "type": "json"
         }
       ]
@@ -404,7 +404,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"shipments\": {\n                    \"data\": [\n                    {\n                        \"shipmentId\": 1,\n                        \"status\": \"In warehouse\",\n                        \"comment\": \"No comment\",\n                        \"date\": \"2016-07-21 11:25:24\"\n                    },\n                    {\n                        \"shipmentId\": 2,\n                        \"status\": \"On Transit\",\n                        \"comment\": \"Expected to arrive in 3 days\",\n                        \"date\": \"2016-07-21 11:26:46\"\n                    },\n                    {\n                        \"shipmentId\": 3,\n                        \"status\": \"Arrived\",\n                        \"comment\": \"Arrived at final checkpoint\",\n                        \"date\": \"2016-07-21 11:27:13\"\n                    },\n                    {\n                        \"shipmentId\": 4,\n                        \"status\": \"Delivered\",\n                        \"comment\": \"Received by the customer\",\n                        \"date\": \"2016-07-21 11:27:36\"\n                    }\n                    ]\n                }\n            }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n                \"cartId\": 4,\n                \"storeName\": \"Amazon\",\n                \"storeURL\": \"https:://www.amazon.com\",\n                \"totalPrice\": 9999.99,\n                \"createdAt\": \"2016-07-21 11:27:36\"\n                \"shipments\": {\n                    \"data\": [\n                    {\n                        \"shipmentId\": 1,\n                        \"status\": \"In warehouse\",\n                        \"comment\": \"No comment\",\n                        \"date\": \"2016-07-21 11:25:24\"\n                    },\n                    {\n                        \"shipmentId\": 2,\n                        \"status\": \"On Transit\",\n                        \"comment\": \"Expected to arrive in 3 days\",\n                        \"date\": \"2016-07-21 11:26:46\"\n                    },\n                    {\n                        \"shipmentId\": 3,\n                        \"status\": \"Arrived\",\n                        \"comment\": \"Arrived at final checkpoint\",\n                        \"date\": \"2016-07-21 11:27:13\"\n                    },\n                    {\n                        \"shipmentId\": 4,\n                        \"status\": \"Delivered\",\n                        \"comment\": \"Received by the customer\",\n                        \"date\": \"2016-07-21 11:27:36\"\n                    }\n                    ]\n                }\n            }\n        }",
           "type": "json"
         }
       ]
@@ -807,6 +807,377 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/CheckoutController.php",
     "groupTitle": "CheckOut"
+  },
+  {
+    "type": "post",
+    "url": "/carts/shipments/{cartId}",
+    "title": "Create/Add order status for a specific cart",
+    "name": "CreateCartShipment",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
+  },
+  {
+    "type": "delete",
+    "url": "/shipments/{shipmentId}",
+    "title": "Delete order status with specific ID",
+    "name": "DeleteShipment",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
+  },
+  {
+    "type": "get",
+    "url": "/carts/shipments/{cartId}",
+    "title": "Request Order status for a specific cart",
+    "name": "GetCartShipments",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                    \"shipmentID\": 4,\n                    \"status\": \"In Warehouse\",\n                    \"comment\": \"Order awaiting shipping\",\n                    \"date\": \"20th June 2016\"\n            }\n            ]\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
+  },
+  {
+    "type": "get",
+    "url": "/carts/shipments/{cartId}?include=cart",
+    "title": "Request Shipping/Order status for a specific cart With Cart information",
+    "name": "GetCartShipmentsWithCart",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>Owner of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"In Warehouse\",\n                \"comment\": \"Order awaiting shipping\",\n                \"date\": \"20th June 2016\",\n                \"data\": {\n                    \"cartId\": 4,\n                    \"storeName\": \"Amazon\",\n                    \"storeURL\": \"https:://www.amazon.com\",\n                    \"totalPrice\": 9999.99,\n                    \"createdAt\": \"16th June 2016\"\n                }\n            }\n            ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
+  },
+  {
+    "type": "get",
+    "url": "/shipments/{shipmentId}",
+    "title": "Request information of a specific order status",
+    "name": "GetShipmentById",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
+  },
+  {
+    "type": "get",
+    "url": "/shipments/{shipmentId}?include=cart",
+    "title": "Request Shipping/Order status With Cart information",
+    "name": "GetShipmentStatusWithCart",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "cartId",
+            "description": "<p>ID of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeName",
+            "description": "<p>Store name of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "storeURL",
+            "description": "<p>Store URL of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "totalPrice",
+            "description": "<p>Total price of the Cart.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>Owner of the cart.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentID\": 4,\n                \"status\": \"In Warehouse\",\n                \"comment\": \"Order awaiting shipping\",\n                \"date\": \"20th June 2016\",\n                \"data\": {\n                    \"cartId\": 4,\n                    \"storeName\": \"Amazon\",\n                    \"storeURL\": \"https:://www.amazon.com\",\n                    \"totalPrice\": 9999.99,\n                    \"createdAt\": \"16th June 2016\"\n                }\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
+  },
+  {
+    "type": "put",
+    "url": "/shipments/{shipmentId}",
+    "title": "Update Shipment/Order status",
+    "name": "UpdateShipment",
+    "group": "OrderStatus",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "OrderStatus"
   },
   {
     "type": "post",
