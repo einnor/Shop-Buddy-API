@@ -15,5 +15,17 @@ class UsersTableSeeder extends Seeder
             'email'     =>  'ronnienyaga@gmail.com',
             'password'  =>  bcrypt('password')
         ])->roles()->attach(2); //Role 2 is Admin
+
+        User::create([
+            'name'      =>  'Athman Gude',
+            'email'     =>  'athmangude@gmail.com',
+            'password'  =>  bcrypt('password')
+        ])->roles()->attach(1); //Role 1 is Customer
+
+        User::create([
+            'name'      =>  'Derrick Mushangi',
+            'email'     =>  'derrickmushangi@gmail.com',
+            'password'  =>  bcrypt('password')
+        ])->roles()->attach(1); //Role 1 is Customer
     }
 }
