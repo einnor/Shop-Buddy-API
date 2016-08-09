@@ -562,7 +562,8 @@ class CartsController extends Controller
                     "cartId": 4,
                     "storeName": "Amazon",
                     "storeURL": "https:://www.amazon.com",
-                    "totalPrice": 9999.99
+                    "totalPrice": 9999.99,
+                    "createdAt": "2016-07-21 11:27:36"
                 }
             }
      *
@@ -589,6 +590,7 @@ class CartsController extends Controller
                     "storeName": "Amazon",
                     "storeURL": "https:://www.amazon.com",
                     "totalPrice": 9999.99,
+                    "createdAt": "2016-07-21 11:27:36"
                     "user": {
                         "data": {
                             "userId": 1,
@@ -623,6 +625,7 @@ class CartsController extends Controller
                     "storeName": "Amazon",
                     "storeURL": "https:://www.amazon.com",
                     "totalPrice": 9999.99,
+                    "createdAt": "2016-07-21 11:27:36"
                     "payment": {
                         "data": {
                             "paymentId": 4,
@@ -657,6 +660,7 @@ class CartsController extends Controller
                     "storeName": "Amazon",
                     "storeURL": "https:://www.amazon.com",
                     "totalPrice": 9999.99,
+                    "createdAt": "2016-07-21 11:27:36"
                     "products": {
                         "data": [
                         {
@@ -701,6 +705,7 @@ class CartsController extends Controller
                     "storeName": "Amazon",
                     "storeURL": "https:://www.amazon.com",
                     "totalPrice": 9999.99,
+                    "createdAt": "2016-07-21 11:27:36"
                     "shipments": {
                         "data": [
                         {

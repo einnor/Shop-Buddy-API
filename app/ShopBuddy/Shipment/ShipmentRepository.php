@@ -48,10 +48,11 @@ class ShipmentRepository
 
     /**
      * Get all the shipments
+     * @param $cartId
      * @return mixed
      */
-    public function getAllShipments(){
-        return Shipment::latest()->get();
+    public function getAllShipments($cartId){
+        return Shipment::where('cart_id', $cartId)->latest()->get();
     }
 
     /**
