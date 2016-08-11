@@ -30,7 +30,7 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      */
     $api->post('/user/authenticate', 'App\Http\Controllers\Auth\AuthController@authenticate');
     $api->post('/user/register', 'App\Http\Controllers\Auth\AuthController@registerUser');
-    $api->post('/user', 'App\Http\Controllers\Auth\AuthController@showUser');
+    $api->post('/authenticated/user', 'App\Http\Controllers\Auth\AuthController@showUser');
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
 
     /**

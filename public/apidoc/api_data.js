@@ -2,7 +2,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/api/user/authenticate",
-    "title": "Authenticate login request",
+    "title": "Authenticate user",
     "name": "AuthenticateUser",
     "group": "Authentication",
     "parameter": {
@@ -71,7 +71,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/api/token/refresh",
-    "title": "Refresh the token of a logged in user",
+    "title": "Refresh token",
     "name": "RefreshToken",
     "group": "Authentication",
     "parameter": {
@@ -102,7 +102,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"refreshToken\": \"xxx\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"refreshToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY\"\n}",
           "type": "json"
         }
       ]
@@ -1283,130 +1283,9 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/api/user",
-    "title": "Request User information using the token",
-    "name": "GetUser",
-    "group": "User",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "token",
-            "description": "<p>Users unique token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Name of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Datetime",
-            "optional": false,
-            "field": "created_at",
-            "description": "<p>Date and time when the User was created.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Datetime",
-            "optional": false,
-            "field": "updated_at",
-            "description": "<p>Date and time when the User was updated.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"currentUser\": [\n         \"name\": \"John Doe\",\n         \"email\": \"john.doe@gmail.com\",\n         \"created_at\": \"2016-07-21 05:33:49\",\n         \"updated_at\": \"2016-07-21 05:33:49\"\n     ],\n            \"refreshToken\": \"xxx\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The id of the User was not found.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Not Found\n{\n     \"message\": \"Token is invalid\",\n     \"status_code\": 500,\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Auth/AuthController.php",
-    "groupTitle": "User"
-  },
-  {
-    "type": "get",
-    "url": "/api/users/transactions/{id}?include=products,payment,shipments",
-    "title": "User Transaction History",
-    "name": "GetUserTransactionHistory",
-    "group": "User",
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n\n{\n\"data\": [\n{\n\"cartId\": 1,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 1,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"1\",\n\"status\": \"\"\n}\n},\n\"shipments\": {\n\"data\": [\n{\n\"shipmentId\": 1,\n\"status\": \"In warehouse\",\n\"comment\": \"No comment\",\n\"date\": \"2016-07-21 11:25:24\"\n},\n{\n\"shipmentId\": 2,\n\"status\": \"On Transit\",\n\"comment\": \"Expected to arrive in 3 days\",\n\"date\": \"2016-07-21 11:26:46\"\n},\n{\n\"shipmentId\": 3,\n\"status\": \"Arrived\",\n\"comment\": \"Arrived at final checkpoint\",\n\"date\": \"2016-07-21 11:27:13\"\n},\n{\n\"shipmentId\": 4,\n\"status\": \"Delivered\",\n\"comment\": \"Received by the customer\",\n\"date\": \"2016-07-21 11:27:36\"\n}\n]\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 1,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 2,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 3,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n},\n{\n\"cartId\": 2,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 2,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"2\",\n\"status\": \"\"\n}\n},\n\"shipments\": {\n\"data\": []\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 4,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 5,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 6,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n},\n{\n\"cartId\": 3,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 3,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"3\",\n\"status\": \"\"\n}\n},\n\"shipments\": {\n\"data\": []\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 7,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 8,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 9,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n},\n{\n\"cartId\": 4,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 4,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"4\",\n\"status\": \"PENDING\"\n}\n},\n\"shipments\": {\n\"data\": []\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 10,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 11,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 12,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n}\n]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Exception",
-            "description": "<p>Something went wrong.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 500 Exception\n{\n     \"message\": \"Something went wrong\",\n     \"status_code\": 500,\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/CartsController.php",
-    "groupTitle": "User"
-  },
-  {
-    "type": "post",
-    "url": "/api/user",
-    "title": "Register a new user and give them a default role of 'customer'",
-    "name": "RegisterUser",
+    "url": "/api/users",
+    "title": "Create new user",
+    "name": "CreateUser",
     "group": "User",
     "parameter": {
       "fields": {
@@ -1484,5 +1363,126 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Auth/AuthController.php",
     "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/api/users/transactions/{id}?include=products,payment,shipments",
+    "title": "User Transaction History",
+    "name": "GetUserTransactionHistory",
+    "group": "User",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n\n{\n\"data\": [\n{\n\"cartId\": 1,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 1,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"1\",\n\"status\": \"\"\n}\n},\n\"shipments\": {\n\"data\": [\n{\n\"shipmentId\": 1,\n\"status\": \"In warehouse\",\n\"comment\": \"No comment\",\n\"date\": \"2016-07-21 11:25:24\"\n},\n{\n\"shipmentId\": 2,\n\"status\": \"On Transit\",\n\"comment\": \"Expected to arrive in 3 days\",\n\"date\": \"2016-07-21 11:26:46\"\n},\n{\n\"shipmentId\": 3,\n\"status\": \"Arrived\",\n\"comment\": \"Arrived at final checkpoint\",\n\"date\": \"2016-07-21 11:27:13\"\n},\n{\n\"shipmentId\": 4,\n\"status\": \"Delivered\",\n\"comment\": \"Received by the customer\",\n\"date\": \"2016-07-21 11:27:36\"\n}\n]\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 1,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 2,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 3,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n},\n{\n\"cartId\": 2,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 2,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"2\",\n\"status\": \"\"\n}\n},\n\"shipments\": {\n\"data\": []\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 4,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 5,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 6,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n},\n{\n\"cartId\": 3,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 3,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"3\",\n\"status\": \"\"\n}\n},\n\"shipments\": {\n\"data\": []\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 7,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 8,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 9,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n},\n{\n\"cartId\": 4,\n\"storeName\": \"Amazon\",\n\"storeURL\": \"https:://www.amazon.com\",\n\"totalPrice\": \"9999.99\",\n\"payment\": {\n\"data\": {\n\"paymentId\": 4,\n\"transaction_tracking_id\": \"\",\n\"merchant_reference\": \"4\",\n\"status\": \"PENDING\"\n}\n},\n\"shipments\": {\n\"data\": []\n},\n\"products\": {\n\"data\": [\n{\n\"productId\": 10,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 11,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n},\n{\n\"productId\": 12,\n\"asinCode\": \"B01FFQEWE8\",\n\"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n\"price\": 9999.99,\n\"quantity\": 1,\n\"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n\"color\": \"Black\",\n\"weight\": \"67.50\",\n\"length\": \"999.99\",\n\"width\": \"999.99\",\n\"height\": \"800.00\",\n\"size\": \"50.00\"\n}\n]\n}\n}\n]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Exception",
+            "description": "<p>Something went wrong.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Exception\n{\n     \"message\": \"Something went wrong\",\n     \"status_code\": 500,\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/CartsController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/api/authenticated/user",
+    "title": "Fetch authenticated user",
+    "name": "GetAuthenticatedUser",
+    "group": "User_Extension",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Users unique token.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>Date and time when the User was created.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>Date and time when the User was updated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"currentUser\": [\n         \"name\": \"John Doe\",\n         \"email\": \"john.doe@gmail.com\",\n         \"created_at\": \"2016-07-21 05:33:49\",\n         \"updated_at\": \"2016-07-21 05:33:49\"\n     ],\n            \"refreshToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The id of the User was not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Not Found\n{\n     \"message\": \"Token is invalid\",\n     \"status_code\": 500,\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Auth/AuthController.php",
+    "groupTitle": "User_Extension"
   }
 ] });

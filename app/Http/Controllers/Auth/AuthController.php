@@ -48,7 +48,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @api {post} /api/user/authenticate Authenticate login request
+     * @api {post} /api/user/authenticate Authenticate user
      * @apiName AuthenticateUser
      * @apiGroup Authentication
      *
@@ -97,9 +97,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @api {post} /api/user Request User information using the token
-     * @apiName GetUser
-     * @apiGroup User
+     * @api {post} /api/authenticated/user Fetch authenticated user
+     * @apiName GetAuthenticatedUser
+     * @apiGroup User Extension
      *
      * @apiParam {String} token Users unique token.
      *
@@ -119,7 +119,7 @@ class AuthController extends Controller
      *              "created_at": "2016-07-21 05:33:49",
      *              "updated_at": "2016-07-21 05:33:49"
      *          ],
-                "refreshToken": "xxx"
+                "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY"
      *     }
      *
      * @apiError UserNotFound The id of the User was not found.
@@ -133,14 +133,15 @@ class AuthController extends Controller
      *
      *
      */
+
     public function showUser(){
         try{
             $currentUser =  JWTAuth::parseToken()->toUser();
             if(! $currentUser){
                 return $this->response->errorNotFound('User not found');
             }
-            $token = JWTAuth::getToken();
-            $refreshToken = JWTAuth::refresh($token);
+            $oldToken = JWTAuth::getToken();
+            $token = JWTAuth::refresh($oldToken);
         }catch(TokenInvalidException $ex){
             return $this->response->error('Token is invalid', 401);
         }catch(TokenExpiredException $ex){
@@ -148,7 +149,7 @@ class AuthController extends Controller
         }catch(TokenBlacklistedException $ex){
             return $this->response->error('Token is blacklisted', 401);
         }
-        return $this->response->array(compact('currentUser','refreshToken'))->setStatusCode(200);
+        return $this->response->array(compact('currentUser','token'))->setStatusCode(200);
     }
 
     public function authenticateRequest() {
@@ -160,8 +161,8 @@ class AuthController extends Controller
     }
 
     /**
-     * @api {post} /api/user Register a new user and give them a default role of 'customer'
-     * @apiName RegisterUser
+     * @api {post} /api/users Create new user
+     * @apiName CreateUser
      * @apiGroup User
      *
      * @param Request $request
@@ -194,6 +195,7 @@ class AuthController extends Controller
     *           "status_code": 500
      *     }
      */
+
     public function registerUser(Request $request)
     {
         $validator = $this->validator($request->all());
@@ -228,7 +230,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @api {post} /api/token/refresh Refresh the token of a logged in user
+     * @api {post} /api/token/refresh Refresh token
      * @apiName RefreshToken
      * @apiGroup Authentication
      *
@@ -239,7 +241,7 @@ class AuthController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *       "refreshToken": "xxx"
+     *       "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY"
      *     }
      *
      * @apiError Unauthorized Token is invalid.
@@ -251,6 +253,7 @@ class AuthController extends Controller
      *          "status_code": 401
      *     }
      */
+
     public function refreshToken(){
         $token = JWTAuth::getToken();
         if(! $token){
