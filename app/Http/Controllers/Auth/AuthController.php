@@ -113,12 +113,13 @@ class AuthController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *          "user": [
+     *          "currentUser": [
      *              "name": "John Doe",
      *              "email": "john.doe@gmail.com",
      *              "created_at": "2016-07-21 05:33:49",
      *              "updated_at": "2016-07-21 05:33:49"
-     *          ]
+     *          ],
+                "refreshToken": "xxx"
      *     }
      *
      * @apiError UserNotFound The id of the User was not found.
@@ -134,10 +135,12 @@ class AuthController extends Controller
      */
     public function showUser(){
         try{
-            $user =  JWTAuth::parseToken()->toUser();
-            if(! $user){
+            $currentUser =  JWTAuth::parseToken()->toUser();
+            if(! $currentUser){
                 return $this->response->errorNotFound('User not found');
             }
+            $token = JWTAuth::getToken();
+            $refreshToken = JWTAuth::refresh($token);
         }catch(TokenInvalidException $ex){
             return $this->response->error('Token is invalid', 401);
         }catch(TokenExpiredException $ex){
@@ -145,7 +148,7 @@ class AuthController extends Controller
         }catch(TokenBlacklistedException $ex){
             return $this->response->error('Token is blacklisted', 401);
         }
-        return $this->response->array(compact('user'))->setStatusCode(200);
+        return $this->response->array(compact('currentUser','refreshToken'))->setStatusCode(200);
     }
 
     public function authenticateRequest() {

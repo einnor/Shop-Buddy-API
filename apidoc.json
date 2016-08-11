@@ -1,7 +1,7 @@
 {
   "name": "ShopBuddy",
-  "version": "0.1.0",
-  "description": "apiDoc basic example",
+  "version": "0.2.0",
+  "description": "This is the official API documentation for ShopBuddy",
   "title": "ShopBuddy API Doc",
   "url" : "https://shopbuddy.dev"
 }

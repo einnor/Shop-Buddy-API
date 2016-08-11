@@ -34,12 +34,6 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
 
     /**
-     * Checkout
-     */
-    $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
-    $api->post('/user/checkout', 'App\Http\Controllers\CheckoutController@checkout');
-
-    /**
      * Pesapal IPN Listener
      */
     $api->post('/pesapal/ipn/listener', 'App\Http\Controllers\CheckoutController@listen');
@@ -63,4 +57,12 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      */
     $api->get('/carts', 'App\Http\Controllers\CartsController@getAllCarts');
     $api->get('/carts/{id}', 'App\Http\Controllers\CartsController@getCartById');
+    $api->put('/carts/{id}', 'App\Http\Controllers\CartsController@updateCartById');
+    $api->delete('/carts/{id}', 'App\Http\Controllers\CartsController@deleteCartById');
+
+    /**
+     * Checkout
+     */
+    $api->post('/carts', 'App\Http\Controllers\CheckoutController@checkout');
+    $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
 });

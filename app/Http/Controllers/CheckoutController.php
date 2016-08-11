@@ -30,9 +30,9 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @api {post} /api/user/checkout Checkout action
-     * @apiName CheckOut
-     * @apiGroup CheckOut
+     * @api {post} /api/carts Create cart - Checkout action
+     * @apiName CartCheckOut
+     * @apiGroup Cart
      *
      * @apiExample Example Usage
      * {
@@ -76,7 +76,6 @@ class CheckoutController extends Controller
      *     }
      */
     /**
-     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -96,7 +95,7 @@ class CheckoutController extends Controller
     /**
      * @api {post} /api/products/attributes Query attributes of Amazon products
      * @apiName GetAmazonProducts
-     * @apiGroup CheckOut
+     * @apiGroup Product
      *
      * @apiExample Example Usage
      *  {
@@ -220,7 +219,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Listen from response from Pesapal
+     * Listen for response from Pesapal
      */
     public function listen() {
         $pesapal = new PesapalIntegration();
