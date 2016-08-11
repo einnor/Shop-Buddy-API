@@ -34,6 +34,9 @@ class UserRepository
      */
     public function updateUser(array $data, $id){
         $user = User::findOrFail($id);
+        $roleId = Role::where(['name' => $data['role']])->first();
+        $user->roles()->attach($roleId);
+        $data = array_except($data, ['role']);
         $user->update($data);
     }
 

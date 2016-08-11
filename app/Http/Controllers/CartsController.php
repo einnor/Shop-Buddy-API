@@ -495,7 +495,7 @@ class CartsController extends Controller
     /**
      * @api {get} /api/users/transactions/{id}?include=products,payment,shipments User Transaction History
      * @apiName GetUserTransactionHistory
-     * @apiGroup User
+     * @apiGroup User Extension
      *
      *
      * @apiSuccessExample Success-Response:
