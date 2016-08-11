@@ -29,9 +29,17 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      * Authentication
      */
     $api->post('/user/authenticate', 'App\Http\Controllers\Auth\AuthController@authenticate');
-    $api->post('/user/register', 'App\Http\Controllers\Auth\AuthController@registerUser');
     $api->post('/authenticated/user', 'App\Http\Controllers\Auth\AuthController@showUser');
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
+
+    /**
+     * Users
+     */
+    $api->get('/users', 'App\Http\Controllers\UsersController@getAllUsers');
+    $api->post('/users', 'App\Http\Controllers\Auth\AuthController@registerUser');
+    $api->get('/users/{id}', 'App\Http\Controllers\UsersController@getUserById');
+    $api->put('/users/{id}', 'App\Http\Controllers\UsersController@updateUserById');
+    $api->delete('/users/{id}', 'App\Http\Controllers\UsersController@deleteUser');
 
     /**
      * Pesapal IPN Listener
