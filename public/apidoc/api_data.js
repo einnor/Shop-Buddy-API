@@ -3,6 +3,7 @@ define({ "api": [
     "type": "post",
     "url": "/api/user/authenticate",
     "title": "Authenticate user",
+    "version": "0.1.0",
     "name": "AuthenticateUser",
     "group": "Authentication",
     "parameter": {
@@ -40,7 +41,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY\",\n            \"currentUser\": {\n                \"id\": 8,\n                \"name\": \"Tom Keen\",\n                \"email\": \"tom.keen@gmail.com\",\n                \"created_at\": \"2016-08-01 06:07:20\",\n                \"updated_at\": \"2016-08-01 06:07:20\"\n            }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"currentUser\":\n     {\n         \"id\": 8,\n         \"name\": \"Tom Keen\",\n         \"email\": \"tom.keen@gmail.com\",\n         \"created_at\": \"2016-08-01 06:07:20\",\n         \"updated_at\": \"2016-08-01 06:07:20\"\n     },\n     \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY\"\n}",
           "type": "json"
         }
       ]
@@ -64,7 +65,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/Auth/AuthController.php",
     "groupTitle": "Authentication"
   },
@@ -72,6 +72,7 @@ define({ "api": [
     "type": "post",
     "url": "/api/token/refresh",
     "title": "Refresh token",
+    "version": "0.1.0",
     "name": "RefreshToken",
     "group": "Authentication",
     "parameter": {
@@ -126,7 +127,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/Auth/AuthController.php",
     "groupTitle": "Authentication"
   },
@@ -134,6 +134,7 @@ define({ "api": [
     "type": "post",
     "url": "/api/carts",
     "title": "Create cart - Checkout action",
+    "version": "0.1.0",
     "name": "CartCheckOut",
     "group": "Cart",
     "examples": [
@@ -158,7 +159,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"iframeSource\": {\n         \"GET&http%3A%2F%2Fdemo.pesapal.com%2Fapi%2FPostPesapalDirectOrderV4&oauth_callback%3Dhttp%253A%252F%252Fshopbuddy.co.ke%252Fpayments%252Fcallback%26oauth_consumer_key%3D2WVcrLQku%252Fh1dgOU0oTUOgTjGYq%252BZity%26oauth_nonce%3D%257BEBF66D2C-FC11-5D37-0854-BF20278E1E7C%257D%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1469730513%26oauth_version%3D1.0%26pesapal_request_data%3D%2526lt%253B%253Fxml%2520version%253D%2526quot%253B1.0%2526quot%253B%2520encoding%253D%2526quot%253Butf-8%2526quot%253B%253F%2526gt%253B%2526lt%253BPesapalDirectOrderInfo%2520xmlns%253Axsi%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema-instance%2526quot%253B%2520xmlns%253Axsd%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema%2526quot%253B%2520Amount%253D%2526quot%253B120000%2526quot%253B%2520Description%253D%2526quot%253BORDER%2520DESCRIPTION%2526quot%253B%2520Type%253D%2526quot%253BMERCHANT%2526quot%253B%2520Reference%253D%2526quot%253B4%2526quot%253B%2520FirstName%253D%2526quot%253BRonnie%2526quot%253B%2520LastName%253D%2526quot%253BNyaga%2526quot%253B%2520Email%253D%2526quot%253Bronnienyaga%2540gmail.com%2526quot%253B%2520PhoneNumber%253D%2526quot%253B%2526quot%253B%2520xmlns%253D%2526quot%253Bhttp%253A%252F%252Fwww.pesapal.com%2526quot%253B%2520%252F%2526gt%253B\"\n            }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"iframeSource\": \"GET&http%3A%2F%2Fdemo.pesapal.com%2Fapi%2FPostPesapalDirectOrderV4&oauth_callback%3Dhttp%253A%252F%252Fshopbuddy.co.ke%252Fpayments%252Fcallback%26oauth_consumer_key%3D2WVcrLQku%252Fh1dgOU0oTUOgTjGYq%252BZity%26oauth_nonce%3D%257BEBF66D2C-FC11-5D37-0854-BF20278E1E7C%257D%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1469730513%26oauth_version%3D1.0%26pesapal_request_data%3D%2526lt%253B%253Fxml%2520version%253D%2526quot%253B1.0%2526quot%253B%2520encoding%253D%2526quot%253Butf-8%2526quot%253B%253F%2526gt%253B%2526lt%253BPesapalDirectOrderInfo%2520xmlns%253Axsi%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema-instance%2526quot%253B%2520xmlns%253Axsd%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema%2526quot%253B%2520Amount%253D%2526quot%253B120000%2526quot%253B%2520Description%253D%2526quot%253BORDER%2520DESCRIPTION%2526quot%253B%2520Type%253D%2526quot%253BMERCHANT%2526quot%253B%2520Reference%253D%2526quot%253B4%2526quot%253B%2520FirstName%253D%2526quot%253BRonnie%2526quot%253B%2520LastName%253D%2526quot%253BNyaga%2526quot%253B%2520Email%253D%2526quot%253Bronnienyaga%2540gmail.com%2526quot%253B%2520PhoneNumber%253D%2526quot%253B%2526quot%253B%2520xmlns%253D%2526quot%253Bhttp%253A%252F%252Fwww.pesapal.com%2526quot%253B%2520%252F%2526gt%253B\"\n}",
           "type": "json"
         }
       ]
@@ -182,14 +183,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CheckoutController.php",
     "groupTitle": "Cart"
   },
   {
     "type": "delete",
-    "url": "/api/carts/{$id}",
+    "url": "/api/carts/:id",
     "title": "Delete cart",
+    "version": "0.1.0",
     "name": "DeleteCart",
     "group": "Cart",
     "success": {
@@ -233,14 +234,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart"
   },
   {
     "type": "get",
-    "url": "/api/carts/{$id}",
+    "url": "/api/carts/:id",
     "title": "Fetch one cart",
+    "version": "0.1.0",
     "name": "GetCart",
     "group": "Cart",
     "success": {
@@ -284,7 +285,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart"
   },
@@ -292,6 +292,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/carts",
     "title": "Fetch all carts",
+    "version": "0.1.0",
     "name": "GetCarts",
     "group": "Cart",
     "success": {
@@ -335,14 +336,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart"
   },
   {
     "type": "put",
-    "url": "/api/carts/{$id}",
+    "url": "/api/carts/:id",
     "title": "Update cart",
+    "version": "0.1.0",
     "name": "UpdateCart",
     "group": "Cart",
     "success": {
@@ -386,14 +387,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart"
   },
   {
     "type": "get",
-    "url": "/api/carts/{$id}?include=user",
+    "url": "/api/carts/:id?include=user",
     "title": "Fetch one cart - Include owner",
+    "version": "0.1.0",
     "name": "GetCartIncludeOwner",
     "group": "Cart_Extension",
     "success": {
@@ -444,14 +445,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
   {
     "type": "get",
-    "url": "/api/carts/{$id}?include=payment",
+    "url": "/api/carts/:id?include=payment",
     "title": "Fetch one cart - Include payment",
+    "version": "0.1.0",
     "name": "GetCartIncludePayment",
     "group": "Cart_Extension",
     "success": {
@@ -502,14 +503,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
   {
     "type": "get",
-    "url": "/api/carts/{$id}?include=products",
+    "url": "/api/carts/:id?include=products",
     "title": "Fetch one cart - Include products",
+    "version": "0.1.0",
     "name": "GetCartIncludeProducts",
     "group": "Cart_Extension",
     "success": {
@@ -560,14 +561,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
   {
     "type": "get",
-    "url": "/api/carts/{$id}?include=shipments",
+    "url": "/api/carts/:id?include=shipments",
     "title": "Fetch one cart - Include shipments",
+    "version": "0.1.0",
     "name": "GetCartIncludeShipments",
     "group": "Cart_Extension",
     "success": {
@@ -618,7 +619,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
@@ -626,6 +626,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/carts?include=user",
     "title": "Fetch all carts - Include owner",
+    "version": "0.1.0",
     "name": "GetCartsIncludeOwner",
     "group": "Cart_Extension",
     "success": {
@@ -676,7 +677,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
@@ -684,6 +684,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/carts?include=payment",
     "title": "Fetch all carts - Include payment",
+    "version": "0.1.0",
     "name": "GetCartsIncludePayment",
     "group": "Cart_Extension",
     "success": {
@@ -734,7 +735,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
@@ -742,6 +742,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/carts?include=products",
     "title": "Fetch all carts - Include products",
+    "version": "0.1.0",
     "name": "GetCartsIncludeProducts",
     "group": "Cart_Extension",
     "success": {
@@ -792,7 +793,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
@@ -800,6 +800,7 @@ define({ "api": [
     "type": "get",
     "url": "/api/carts?include=shipments",
     "title": "Fetch all carts - Include shipments",
+    "version": "0.1.0",
     "name": "GetCartsIncludeShipments",
     "group": "Cart_Extension",
     "success": {
@@ -850,16 +851,16 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CartsController.php",
     "groupTitle": "Cart_Extension"
   },
   {
     "type": "post",
-    "url": "/carts/shipments/{cartId}",
-    "title": "Create/Add order status for a specific cart",
+    "url": "/carts/shipments/:cartId",
+    "title": "Create shipment (order status)",
+    "version": "0.2.0",
     "name": "CreateCartShipment",
-    "group": "OrderStatus",
+    "group": "Order_Status",
     "success": {
       "fields": {
         "Success 200": [
@@ -901,16 +902,16 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
+    "groupTitle": "Order_Status"
   },
   {
     "type": "delete",
-    "url": "/shipments/{shipmentId}",
-    "title": "Delete order status with specific ID",
+    "url": "/shipments/:id",
+    "title": "Delete shipment (order status)",
+    "version": "0.2.0",
     "name": "DeleteShipment",
-    "group": "OrderStatus",
+    "group": "Order_Status",
     "success": {
       "fields": {
         "Success 200": [
@@ -952,16 +953,16 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
+    "groupTitle": "Order_Status"
   },
   {
     "type": "get",
-    "url": "/carts/shipments/{cartId}",
-    "title": "Request Order status for a specific cart",
+    "url": "/carts/shipments/:cartId",
+    "title": "Fetch cart shipments (order status)",
+    "version": "0.2.0",
     "name": "GetCartShipments",
-    "group": "OrderStatus",
+    "group": "Order_Status",
     "success": {
       "fields": {
         "Success 200": [
@@ -998,21 +999,123 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                    \"shipmentID\": 4,\n                    \"status\": \"In Warehouse\",\n                    \"comment\": \"Order awaiting shipping\",\n                    \"date\": \"20th June 2016\"\n            }\n            ]\n    }",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                    \"shipmentId\": 4,\n                    \"status\": \"In Warehouse\",\n                    \"comment\": \"Order awaiting shipping\",\n                    \"date\": \"20th June 2016\"\n            }\n            ]\n    }",
           "type": "json"
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
+    "groupTitle": "Order_Status"
   },
   {
     "type": "get",
-    "url": "/carts/shipments/{cartId}?include=cart",
-    "title": "Request Shipping/Order status for a specific cart With Cart information",
-    "name": "GetCartShipmentsWithCart",
-    "group": "OrderStatus",
+    "url": "/shipments/:id",
+    "title": "Fetch one shipment (order status)",
+    "version": "0.2.0",
+    "name": "GetShipment",
+    "group": "Order_Status",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "Order_Status"
+  },
+  {
+    "type": "put",
+    "url": "/shipments/:id",
+    "title": "Update shipment (order status)",
+    "version": "0.2.0",
+    "name": "UpdateShipment",
+    "group": "Order_Status",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "shipmentID",
+            "description": "<p>ID of the Shipment/Order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>The status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>A comment on the status of the order.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date the status was changed.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ShipmentsController.php",
+    "groupTitle": "Order_Status"
+  },
+  {
+    "type": "get",
+    "url": "/carts/shipments/:cartId?include=cart",
+    "title": "Fetch cart shipments (order status) - Include cart",
+    "version": "0.2.0",
+    "name": "GetCartShipmentsIncludeCart",
+    "group": "Order_Status_Extension",
     "success": {
       "fields": {
         "Success 200": [
@@ -1061,67 +1164,16 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
+    "groupTitle": "Order_Status_Extension"
   },
   {
     "type": "get",
-    "url": "/shipments/{shipmentId}",
-    "title": "Request information of a specific order status",
-    "name": "GetShipmentById",
-    "group": "OrderStatus",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "shipmentID",
-            "description": "<p>ID of the Shipment/Order.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "status",
-            "description": "<p>The status of the order.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "comment",
-            "description": "<p>A comment on the status of the order.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "date",
-            "description": "<p>The date the status was changed.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
-  },
-  {
-    "type": "get",
-    "url": "/shipments/{shipmentId}?include=cart",
-    "title": "Request Shipping/Order status With Cart information",
-    "name": "GetShipmentStatusWithCart",
-    "group": "OrderStatus",
+    "url": "/shipments/:id?include=cart",
+    "title": "Fetch one shipment (order status) - Include cart",
+    "version": "0.2.0",
+    "name": "GetShipmentIncludeCart",
+    "group": "Order_Status_Extension",
     "success": {
       "fields": {
         "Success 200": [
@@ -1170,65 +1222,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
-  },
-  {
-    "type": "put",
-    "url": "/shipments/{shipmentId}",
-    "title": "Update Shipment/Order status",
-    "name": "UpdateShipment",
-    "group": "OrderStatus",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "shipmentID",
-            "description": "<p>ID of the Shipment/Order.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "status",
-            "description": "<p>The status of the order.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "comment",
-            "description": "<p>A comment on the status of the order.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "date",
-            "description": "<p>The date the status was changed.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"data\": [\n            {\n                \"shipmentId\": 4,\n                \"status\": \"Delivered\",\n                \"comment\": \"Received by the customer\",\n                \"date\": \"2016-07-21 11:27:36\"\n            }\n            ]\n        }",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/ShipmentsController.php",
-    "groupTitle": "OrderStatus"
+    "groupTitle": "Order_Status_Extension"
   },
   {
     "type": "delete",
-    "url": "/api/products/{$id}",
+    "url": "/api/products/:id",
     "title": "Delete product",
+    "version": "0.2.0",
     "name": "DeleteProduct",
     "group": "Product",
     "success": {
@@ -1321,14 +1322,14 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ProductsController.php",
     "groupTitle": "Product"
   },
   {
     "type": "post",
     "url": "/api/products/attributes",
-    "title": "Query attributes of Amazon products",
+    "title": "Fetch Amazon products' attributes",
+    "version": "0.1.0",
     "name": "GetAmazonProducts",
     "group": "Product",
     "examples": [
@@ -1377,7 +1378,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/CheckoutController.php",
     "groupTitle": "Product"
   },
@@ -1483,8 +1483,9 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/api/products/{$id}",
+    "url": "/api/products/:id",
     "title": "Fetch one product",
+    "version": "0.2.0",
     "name": "GetProduct",
     "group": "Product",
     "success": {
@@ -1577,7 +1578,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ProductsController.php",
     "groupTitle": "Product"
   },
@@ -1683,8 +1683,9 @@ define({ "api": [
   },
   {
     "type": "put",
-    "url": "/api/products/{$id}",
+    "url": "/api/products/:id",
     "title": "Update product",
+    "version": "0.2.0",
     "name": "UpdateProduct",
     "group": "Product",
     "success": {
@@ -1777,7 +1778,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/ProductsController.php",
     "groupTitle": "Product"
   },
@@ -2085,6 +2085,7 @@ define({ "api": [
     "type": "post",
     "url": "/api/users",
     "title": "Create new user",
+    "version": "0.1.0",
     "name": "CreateUser",
     "group": "User",
     "parameter": {
@@ -2160,7 +2161,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/Auth/AuthController.php",
     "groupTitle": "User"
   },
@@ -2495,6 +2495,7 @@ define({ "api": [
     "type": "post",
     "url": "/api/authenticated/user",
     "title": "Fetch authenticated user",
+    "version": "0.1.0",
     "name": "GetAuthenticatedUser",
     "group": "User_Extension",
     "parameter": {
@@ -2570,7 +2571,6 @@ define({ "api": [
         }
       ]
     },
-    "version": "0.0.0",
     "filename": "app/Http/Controllers/Auth/AuthController.php",
     "groupTitle": "User_Extension"
   },
@@ -2633,7 +2633,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/api/users/transactions/{id}?include=products,payment,shipments",
+    "url": "/api/users/transactions/:id?include=products,payment,shipments",
     "title": "User Transaction History",
     "name": "GetUserTransactionHistory",
     "group": "User_Extension",

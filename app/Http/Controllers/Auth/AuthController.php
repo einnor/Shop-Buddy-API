@@ -49,6 +49,7 @@ class AuthController extends Controller
 
     /**
      * @api {post} /api/user/authenticate Authenticate user
+     * @apiVersion 0.1.0
      * @apiName AuthenticateUser
      * @apiGroup Authentication
      *
@@ -61,14 +62,15 @@ class AuthController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY",
-                "currentUser": {
-                    "id": 8,
-                    "name": "Tom Keen",
-                    "email": "tom.keen@gmail.com",
-                    "created_at": "2016-08-01 06:07:20",
-                    "updated_at": "2016-08-01 06:07:20"
-                }
+     *          "currentUser":
+     *          {
+     *              "id": 8,
+     *              "name": "Tom Keen",
+     *              "email": "tom.keen@gmail.com",
+     *              "created_at": "2016-08-01 06:07:20",
+     *              "updated_at": "2016-08-01 06:07:20"
+     *          },
+     *          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY"
      *     }
      *
      * @apiError Unauthorized User credentials are not correct!.
@@ -80,6 +82,7 @@ class AuthController extends Controller
      *          "status_code": 401
      *     }
      */
+
     public function authenticate(Request $request){
         $credentials = $request->only('email', 'password');
 
@@ -98,6 +101,7 @@ class AuthController extends Controller
 
     /**
      * @api {post} /api/authenticated/user Fetch authenticated user
+     * @apiVersion 0.1.0
      * @apiName GetAuthenticatedUser
      * @apiGroup User Extension
      *
@@ -162,6 +166,7 @@ class AuthController extends Controller
 
     /**
      * @api {post} /api/users Create new user
+     * @apiVersion 0.1.0
      * @apiName CreateUser
      * @apiGroup User
      *
@@ -231,6 +236,7 @@ class AuthController extends Controller
 
     /**
      * @api {post} /api/token/refresh Refresh token
+     * @apiVersion 0.1.0
      * @apiName RefreshToken
      * @apiGroup Authentication
      *

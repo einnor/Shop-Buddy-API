@@ -26,6 +26,7 @@ class CartsController extends Controller
     //FETCH CARTS
     /**
      * @api {get} /api/carts Fetch all carts
+     * @apiVersion 0.1.0
      * @apiName GetCarts
      * @apiGroup Cart
      *
@@ -53,6 +54,7 @@ class CartsController extends Controller
 
     /**
      * @api {get} /api/carts?include=user Fetch all carts - Include owner
+     * @apiVersion 0.1.0
      * @apiName GetCartsIncludeOwner
      * @apiGroup Cart Extension
      *
@@ -88,6 +90,7 @@ class CartsController extends Controller
 
     /**
      * @api {get} /api/carts?include=payment Fetch all carts - Include payment
+     * @apiVersion 0.1.0
      * @apiName GetCartsIncludePayment
      * @apiGroup Cart Extension
      *
@@ -123,6 +126,7 @@ class CartsController extends Controller
 
     /**
      * @api {get} /api/carts?include=products Fetch all carts - Include products
+     * @apiVersion 0.1.0
      * @apiName GetCartsIncludeProducts
      * @apiGroup Cart Extension
      *
@@ -168,6 +172,7 @@ class CartsController extends Controller
 
     /**
      * @api {get} /api/carts?include=shipments Fetch all carts - Include shipments
+     * @apiVersion 0.1.0
      * @apiName GetCartsIncludeShipments
      * @apiGroup Cart Extension
      *
@@ -214,7 +219,8 @@ class CartsController extends Controller
     }
 
     /**
-     * @api {get} /api/carts/{$id} Fetch one cart
+     * @api {get} /api/carts/:id Fetch one cart
+     * @apiVersion 0.1.0
      * @apiName GetCart
      * @apiGroup Cart
      *
@@ -240,7 +246,8 @@ class CartsController extends Controller
      */
 
     /**
-     * @api {get} /api/carts/{$id}?include=user Fetch one cart - Include owner
+     * @api {get} /api/carts/:id?include=user Fetch one cart - Include owner
+     * @apiVersion 0.1.0
      * @apiName GetCartIncludeOwner
      * @apiGroup Cart Extension
      *
@@ -274,7 +281,8 @@ class CartsController extends Controller
      */
 
     /**
-     * @api {get} /api/carts/{$id}?include=payment Fetch one cart - Include payment
+     * @api {get} /api/carts/:id?include=payment Fetch one cart - Include payment
+     * @apiVersion 0.1.0
      * @apiName GetCartIncludePayment
      * @apiGroup Cart Extension
      *
@@ -309,7 +317,8 @@ class CartsController extends Controller
      */
 
     /**
-     * @api {get} /api/carts/{$id}?include=products Fetch one cart - Include products
+     * @api {get} /api/carts/:id?include=products Fetch one cart - Include products
+     * @apiVersion 0.1.0
      * @apiName GetCartIncludeProducts
      * @apiGroup Cart Extension
      *
@@ -354,7 +363,8 @@ class CartsController extends Controller
      */
 
     /**
-     * @api {get} /api/carts/{$id}?include=shipments Fetch one cart - Include shipments
+     * @api {get} /api/carts/:id?include=shipments Fetch one cart - Include shipments
+     * @apiVersion 0.1.0
      * @apiName GetCartIncludeShipments
      * @apiGroup Cart Extension
      *
@@ -403,7 +413,8 @@ class CartsController extends Controller
     }
 
     /**
-     * @api {put} /api/carts/{$id} Update cart
+     * @api {put} /api/carts/:id Update cart
+     * @apiVersion 0.1.0
      * @apiName UpdateCart
      * @apiGroup Cart
      *
@@ -449,7 +460,8 @@ class CartsController extends Controller
     }
 
     /**
-     * @api {delete} /api/carts/{$id} Delete cart
+     * @api {delete} /api/carts/:id Delete cart
+     * @apiVersion 0.1.0
      * @apiName DeleteCart
      * @apiGroup Cart
      *
@@ -490,10 +502,11 @@ class CartsController extends Controller
 
 
 
+    //TODO Clean the below API
 
     // GET TRANSACTION HISTORY
     /**
-     * @api {get} /api/users/transactions/{id}?include=products,payment,shipments User Transaction History
+     * @api {get} /api/users/transactions/:id?include=products,payment,shipments User Transaction History
      * @apiName GetUserTransactionHistory
      * @apiGroup User Extension
      *

@@ -225,7 +225,8 @@ class ProductsController extends Controller
     }
 
     /**
-     * @api {get} /api/products/{$id} Fetch one product
+     * @api {get} /api/products/:id Fetch one product
+     * @apiVersion 0.2.0
      * @apiName GetProduct
      * @apiGroup Product
      *
@@ -326,7 +327,8 @@ class ProductsController extends Controller
 
 
     /**
-     * @api {put} /api/products/{$id} Update product
+     * @api {put} /api/products/:id Update product
+     * @apiVersion 0.2.0
      * @apiName UpdateProduct
      * @apiGroup Product
      *
@@ -379,7 +381,8 @@ class ProductsController extends Controller
     }
 
     /**
-     * @api {delete} /api/products/{$id} Delete product
+     * @api {delete} /api/products/:id Delete product
+     * @apiVersion 0.2.0
      * @apiName DeleteProduct
      * @apiGroup Product
      *
