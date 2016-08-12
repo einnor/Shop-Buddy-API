@@ -13,7 +13,8 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
+            $table->primary('id');
             $table->integer('cart_id')->unsigned();
             $table->foreign('cart_id')->references('id')->on('carts');
             $table->string('transaction_tracking_id')->default(null);

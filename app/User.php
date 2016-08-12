@@ -8,7 +8,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-    use EntrustUserTrait;
+    use EntrustUserTrait, Uuids;
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
     public function carts() {
         return $this->hasMany(Cart::class);
