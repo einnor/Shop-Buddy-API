@@ -53,6 +53,10 @@ class ProductRepository
         return Product::latest()->get();
     }
 
+    public function getAllProductsByCartId($cartId) {
+        return Product::where('cart_id', $cartId)->latest()->get();
+    }
+
     /**
      * Get details of a specific product by the id
      * @param $id

@@ -73,4 +73,13 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      */
     $api->post('/carts', 'App\Http\Controllers\CheckoutController@checkout');
     $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
+
+    /**
+     * Products
+     */
+    $api->get('/products', 'App\Http\Controllers\ProductsController@getAllProducts');
+    $api->get('/carts/{id}/products', 'App\Http\Controllers\ProductsController@getAllProductsByCartId');
+    $api->get('/products/{id}', 'App\Http\Controllers\ProductsController@getProductById');
+    $api->put('/products/{id}', 'App\Http\Controllers\ProductsController@updateProductById');
+    $api->delete('/products/{id}', 'App\Http\Controllers\ProductsController@deleteProductById');
 });

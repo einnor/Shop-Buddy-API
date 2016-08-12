@@ -1226,6 +1226,106 @@
     "groupTitle": "OrderStatus"
   },
   {
+    "type": "delete",
+    "url": "/api/products/{$id}",
+    "title": "Delete product",
+    "name": "DeleteProduct",
+    "group": "Product",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"data\":\n     {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70,\n     }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product"
+  },
+  {
     "type": "post",
     "url": "/api/products/attributes",
     "title": "Query attributes of Amazon products",
@@ -1280,6 +1380,706 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/CheckoutController.php",
     "groupTitle": "Product"
+  },
+  {
+    "type": "get",
+    "url": "/api/carts/:id/products",
+    "title": "Fetch all cart products",
+    "version": "0.2.0",
+    "name": "GetCartProducts",
+    "group": "Product",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"data\": [\n  {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70\n     }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "get",
+    "url": "/api/products/{$id}",
+    "title": "Fetch one product",
+    "name": "GetProduct",
+    "group": "Product",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70,\n            }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "get",
+    "url": "/api/products",
+    "title": "Fetch all products",
+    "version": "0.2.0",
+    "name": "GetProducts",
+    "group": "Product",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"data\": [\n  {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70\n     }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "put",
+    "url": "/api/products/{$id}",
+    "title": "Update product",
+    "name": "UpdateProduct",
+    "group": "Product",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"data\":\n            {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70,\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "get",
+    "url": "/api/carts/:id/products?include=cart",
+    "title": "Fetch all cart products - Include cart",
+    "version": "0.2.0",
+    "name": "GetCartProductsIncludeCart",
+    "group": "Product_Extension",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"data\": [\n  {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70,\n         \"cart\":\n         {\n             \"cartId\": 4,\n                    \"storeName\": \"Amazon\",\n                    \"storeURL\": \"https:://www.amazon.com\",\n                    \"totalPrice\": 9999.99,\n                    \"createdAt\": \"2016-07-21 11:27:36\"\n         }\n     }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product_Extension"
+  },
+  {
+    "type": "get",
+    "url": "/api/carts/:id/products?include=cart",
+    "title": "Fetch one product - Include cart",
+    "version": "0.2.0",
+    "name": "GetProductIncludeCart",
+    "group": "Product_Extension",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"data\": [\n  {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70,\n         \"cart\":\n         {\n             \"cartId\": 4,\n                    \"storeName\": \"Amazon\",\n                    \"storeURL\": \"https:://www.amazon.com\",\n                    \"totalPrice\": 9999.99,\n                    \"createdAt\": \"2016-07-21 11:27:36\"\n         }\n     }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product_Extension"
+  },
+  {
+    "type": "get",
+    "url": "/api/products?include=cart",
+    "title": "Fetch all products - Include cart",
+    "version": "0.2.0",
+    "name": "GetProductsIncludeCart",
+    "group": "Product_Extension",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "asin_code",
+            "description": "<p>Role of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Price of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Quantity of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>URL of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "color",
+            "description": "<p>Color of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>Weight of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "length",
+            "description": "<p>Length of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "width",
+            "description": "<p>Width of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>Height of the Product.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "size",
+            "description": "<p>Size of the Product.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"data\": [\n  {\n         \"productId\": 1,\n         \"asin_code\": \"B01FFQEWE8\",\n         \"name\": \"Samsung UN65KU7500 Curved 65-Inch 4K Ultra HD Smart LED TV\",\n         \"price\": 9999.90,\n         \"quantity\": 1,\n         \"url\": \"https://www.amazon.com/dp/B01FFQEWE8/ref=gbph_img_m-5_3602_1795ae87?smid=ATVPDKIKX0DER&pf_rd_p=2532983602&pf_rd_s=merchandised-search-5&pf_rd_t=101&pf_rd_i=1266092011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=D2VKTKRZRMGWB64F9X3V\",\n         \"color\": \"Black\",\n         \"weight\": 4.50,\n         \"length\": 50.70,\n         \"width\": 50.70,\n         \"height\": 50.70,\n         \"size\": 50.70,\n         \"cart\":\n         {\n             \"cartId\": 4,\n                    \"storeName\": \"Amazon\",\n                    \"storeURL\": \"https:://www.amazon.com\",\n                    \"totalPrice\": 9999.99,\n                    \"createdAt\": \"2016-07-21 11:27:36\"\n         }\n     }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Http/Controllers/ProductsController.php",
+    "groupTitle": "Product_Extension"
   },
   {
     "type": "post",
