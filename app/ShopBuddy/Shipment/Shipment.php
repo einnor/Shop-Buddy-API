@@ -3,10 +3,13 @@
 namespace App\ShopBuddy\Shipment;
 
 use App\ShopBuddy\Cart\Cart;
+use App\ShopBuddy\Traits\UuidModel;
 use Illuminate\Database\Eloquent\Model;
 
 class Shipment extends Model
 {
+    use UuidModel;
+
     protected $table = 'shipments';
 
     protected $fillable = [
