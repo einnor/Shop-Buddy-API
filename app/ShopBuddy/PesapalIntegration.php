@@ -25,8 +25,8 @@ class PesapalIntegration
          * Pesapal Consumer and Secret key
          */
         //TODO use env()
-        $this->consumer_key = '2WVcrLQku/h1dgOU0oTUOgTjGYq+Zity';
-        $this->consumer_secret = 'sJBZc7yFNon6a1YQfTaXL9IwKUg=';
+        $this->consumer_key = getenv('PESAPAL_CONSUMER_KEY');
+        $this->consumer_secret = getenv('PESAPAL_CONSUMER_SECRET');
 
         /**
          * Change this to https://www.pesapal.com/API/PostPesapalDirectOrderV4 when you are ready to go live
