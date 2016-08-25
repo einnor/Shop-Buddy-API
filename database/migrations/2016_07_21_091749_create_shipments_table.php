@@ -14,6 +14,7 @@ class CreateShipmentsTable extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid')->unique();
             $table->integer('cart_id')->unsigned();
             $table->foreign('cart_id')->references('id')->on('carts');
             $table->string('status');

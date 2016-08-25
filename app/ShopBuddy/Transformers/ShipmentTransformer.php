@@ -28,7 +28,7 @@ class ShipmentTransformer extends TransformerAbstract
             'shipmentId'    =>      (int) $shipment->id,
             'status'        =>      $shipment->status,
             'comment'       =>      $shipment->comment,
-            'date'          =>      (new Carbon($shipment->created_at))->toDateTimeString(),
+            'date'          =>      (new Carbon($shipment->created_at)),
         ];
     }
 

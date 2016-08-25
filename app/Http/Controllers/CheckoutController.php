@@ -30,9 +30,10 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @api {post} /api/user/checkout Checkout action
-     * @apiName CheckOut
-     * @apiGroup CheckOut
+     * @api {post} /api/carts Create cart - Checkout action
+     * @apiVersion 0.1.0
+     * @apiName CartCheckOut
+     * @apiGroup Cart
      *
      * @apiExample Example Usage
      * {
@@ -61,9 +62,7 @@ class CheckoutController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *          "iframeSource": {
-     *              "GET&http%3A%2F%2Fdemo.pesapal.com%2Fapi%2FPostPesapalDirectOrderV4&oauth_callback%3Dhttp%253A%252F%252Fshopbuddy.co.ke%252Fpayments%252Fcallback%26oauth_consumer_key%3D2WVcrLQku%252Fh1dgOU0oTUOgTjGYq%252BZity%26oauth_nonce%3D%257BEBF66D2C-FC11-5D37-0854-BF20278E1E7C%257D%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1469730513%26oauth_version%3D1.0%26pesapal_request_data%3D%2526lt%253B%253Fxml%2520version%253D%2526quot%253B1.0%2526quot%253B%2520encoding%253D%2526quot%253Butf-8%2526quot%253B%253F%2526gt%253B%2526lt%253BPesapalDirectOrderInfo%2520xmlns%253Axsi%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema-instance%2526quot%253B%2520xmlns%253Axsd%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema%2526quot%253B%2520Amount%253D%2526quot%253B120000%2526quot%253B%2520Description%253D%2526quot%253BORDER%2520DESCRIPTION%2526quot%253B%2520Type%253D%2526quot%253BMERCHANT%2526quot%253B%2520Reference%253D%2526quot%253B4%2526quot%253B%2520FirstName%253D%2526quot%253BRonnie%2526quot%253B%2520LastName%253D%2526quot%253BNyaga%2526quot%253B%2520Email%253D%2526quot%253Bronnienyaga%2540gmail.com%2526quot%253B%2520PhoneNumber%253D%2526quot%253B%2526quot%253B%2520xmlns%253D%2526quot%253Bhttp%253A%252F%252Fwww.pesapal.com%2526quot%253B%2520%252F%2526gt%253B"
-                }
+     *          "iframeSource": "GET&http%3A%2F%2Fdemo.pesapal.com%2Fapi%2FPostPesapalDirectOrderV4&oauth_callback%3Dhttp%253A%252F%252Fshopbuddy.co.ke%252Fpayments%252Fcallback%26oauth_consumer_key%3D2WVcrLQku%252Fh1dgOU0oTUOgTjGYq%252BZity%26oauth_nonce%3D%257BEBF66D2C-FC11-5D37-0854-BF20278E1E7C%257D%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1469730513%26oauth_version%3D1.0%26pesapal_request_data%3D%2526lt%253B%253Fxml%2520version%253D%2526quot%253B1.0%2526quot%253B%2520encoding%253D%2526quot%253Butf-8%2526quot%253B%253F%2526gt%253B%2526lt%253BPesapalDirectOrderInfo%2520xmlns%253Axsi%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema-instance%2526quot%253B%2520xmlns%253Axsd%253D%2526quot%253Bhttp%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema%2526quot%253B%2520Amount%253D%2526quot%253B120000%2526quot%253B%2520Description%253D%2526quot%253BORDER%2520DESCRIPTION%2526quot%253B%2520Type%253D%2526quot%253BMERCHANT%2526quot%253B%2520Reference%253D%2526quot%253B4%2526quot%253B%2520FirstName%253D%2526quot%253BRonnie%2526quot%253B%2520LastName%253D%2526quot%253BNyaga%2526quot%253B%2520Email%253D%2526quot%253Bronnienyaga%2540gmail.com%2526quot%253B%2520PhoneNumber%253D%2526quot%253B%2526quot%253B%2520xmlns%253D%2526quot%253Bhttp%253A%252F%252Fwww.pesapal.com%2526quot%253B%2520%252F%2526gt%253B"
      *     }
      *
      * @apiError Exception Something went wrong.
@@ -75,8 +74,8 @@ class CheckoutController extends Controller
      *           "status_code": 500
      *     }
      */
+
     /**
-     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -94,9 +93,10 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @api {post} /api/products/attributes Query attributes of Amazon products
+     * @api {post} /api/products/attributes Fetch Amazon products' attributes
+     * @apiVersion 0.1.0
      * @apiName GetAmazonProducts
-     * @apiGroup CheckOut
+     * @apiGroup Product
      *
      * @apiExample Example Usage
      *  {
@@ -206,6 +206,7 @@ class CheckoutController extends Controller
      *           "status_code": 500
      *     }
      */
+
     /**
      * Get Attributes of Amazon Products using their ASIN codes
      * @param Request $request
@@ -220,7 +221,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Listen from response from Pesapal
+     * Listen for response from Pesapal
      */
     public function listen() {
         $pesapal = new PesapalIntegration();

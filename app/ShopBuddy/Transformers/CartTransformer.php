@@ -33,7 +33,7 @@ class CartTransformer extends TransformerAbstract
             'storeName'         =>      $cart->store_name,
             'storeURL'          =>      $cart->store_url,
             'totalPrice'        =>      (double) $cart->total_price,
-            'createdAt'         =>      (new Carbon($cart->created_at))->toDateString()
+            'createdAt'         =>      (new Carbon($cart->created_at))
         ];
     }
 

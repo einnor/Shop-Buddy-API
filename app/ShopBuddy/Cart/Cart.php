@@ -4,12 +4,15 @@ namespace App\ShopBuddy\Cart;
 
 use App\ShopBuddy\Payment\Payment;
 use App\ShopBuddy\Shipment\Shipment;
+use App\ShopBuddy\Traits\UuidModel;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\ShopBuddy\Product\Product;
 
 class Cart extends Model
 {
+    use UuidModel;
+
     protected $table = 'carts';
 
     protected $fillable = [

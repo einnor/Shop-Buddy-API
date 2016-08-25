@@ -2,11 +2,14 @@
 
 namespace App\ShopBuddy\Product;
 
+use App\ShopBuddy\Traits\UuidModel;
 use Illuminate\Database\Eloquent\Model;
 use App\ShopBuddy\Cart\Cart;
 
 class Product extends Model
 {
+    use UuidModel;
+
     protected $table = 'products';
 
     protected $fillable = [

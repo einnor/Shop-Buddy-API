@@ -3,12 +3,14 @@
 namespace App;
 
 use App\ShopBuddy\Cart\Cart;
+use App\ShopBuddy\Traits\UuidModel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
     use EntrustUserTrait;
+    use UuidModel;
     /**
      * The attributes that are mass assignable.
      *

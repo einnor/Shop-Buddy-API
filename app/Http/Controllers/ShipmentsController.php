@@ -26,10 +26,10 @@ class ShipmentsController extends Controller
     }
 
     /**
-     * @api {get} /carts/shipments/{cartId} Request Order status for a specific cart
+     * @api {get} /carts/shipments/:cartId Fetch cart shipments (order status)
+     * @apiVersion 0.2.0
      * @apiName GetCartShipments
-     * @apiGroup OrderStatus
-     *
+     * @apiGroup Order Status
      *
      * @apiSuccess {Number} shipmentID ID of the Shipment/Order.
      * @apiSuccess {String} status  The status of the order.
@@ -41,7 +41,7 @@ class ShipmentsController extends Controller
      *     {
                 "data": [
                 {
-                        "shipmentID": 4,
+                        "shipmentId": 4,
                         "status": "In Warehouse",
                         "comment": "Order awaiting shipping",
                         "date": "20th June 2016"
@@ -52,10 +52,10 @@ class ShipmentsController extends Controller
      */
 
     /**
-     * @api {get} /carts/shipments/{cartId}?include=cart Request Shipping/Order status for a specific cart With Cart information
-     * @apiName GetCartShipmentsWithCart
-     * @apiGroup OrderStatus
-     *
+     * @api {get} /carts/shipments/:cartId?include=cart Fetch cart shipments (order status) - Include cart
+     * @apiVersion 0.2.0
+     * @apiName GetCartShipmentsIncludeCart
+     * @apiGroup Order Status Extension
      *
      * @apiSuccess {Number} cartId ID of the Cart.
      * @apiSuccess {String} storeName  Store name of the Cart.
@@ -84,6 +84,7 @@ class ShipmentsController extends Controller
     }
      *
      */
+
     /**
      * @param $cartId
      * @return mixed
@@ -92,15 +93,14 @@ class ShipmentsController extends Controller
     {
         $this->shipmentRepository = new ShipmentRepository();
         $shipments = $this->shipmentRepository->getAllShipments($cartId);
-
         return $this->collection($shipments, new ShipmentTransformer());
     }
 
     /**
-     * @api {get} /shipments/{shipmentId} Request information of a specific order status
-     * @apiName GetShipmentById
-     * @apiGroup OrderStatus
-     *
+     * @api {get} /shipments/:id Fetch one shipment (order status)
+     * @apiVersion 0.2.0
+     * @apiName GetShipment
+     * @apiGroup Order Status
      *
      * @apiSuccess {Number} shipmentID ID of the Shipment/Order.
      * @apiSuccess {String} status  The status of the order.
@@ -123,10 +123,10 @@ class ShipmentsController extends Controller
      */
 
     /**
-     * @api {get} /shipments/{shipmentId}?include=cart Request Shipping/Order status With Cart information
-     * @apiName GetShipmentStatusWithCart
-     * @apiGroup OrderStatus
-     *
+     * @api {get} /shipments/:id?include=cart Fetch one shipment (order status) - Include cart
+     * @apiVersion 0.2.0
+     * @apiName GetShipmentIncludeCart
+     * @apiGroup Order Status Extension
      *
      * @apiSuccess {Number} cartId ID of the Cart.
      * @apiSuccess {String} storeName  Store name of the Cart.
@@ -168,10 +168,10 @@ class ShipmentsController extends Controller
     }
 
     /**
-     * @api {post} /carts/shipments/{cartId} Create/Add order status for a specific cart
+     * @api {post} /carts/shipments/:cartId Create shipment (order status)
+     * @apiVersion 0.2.0
      * @apiName CreateCartShipment
-     * @apiGroup OrderStatus
-     *
+     * @apiGroup Order Status
      *
      * @apiSuccess {Number} shipmentID ID of the Shipment/Order.
      * @apiSuccess {String} status  The status of the order.
@@ -192,6 +192,7 @@ class ShipmentsController extends Controller
             }
      *
      */
+
     /**
      * @param Request $request
      * @param $cartId
@@ -211,10 +212,10 @@ class ShipmentsController extends Controller
     }
 
     /**
-     * @api {put} /shipments/{shipmentId} Update Shipment/Order status
+     * @api {put} /shipments/:id Update shipment (order status)
+     * @apiVersion 0.2.0
      * @apiName UpdateShipment
-     * @apiGroup OrderStatus
-     *
+     * @apiGroup Order Status
      *
      * @apiSuccess {Number} shipmentID ID of the Shipment/Order.
      * @apiSuccess {String} status  The status of the order.
@@ -235,6 +236,7 @@ class ShipmentsController extends Controller
             }
      *
      */
+
     /**
      * @param Request $request
      * @param $id
@@ -254,10 +256,10 @@ class ShipmentsController extends Controller
     }
 
     /**
-     * @api {delete} /shipments/{shipmentId} Delete order status with specific ID
+     * @api {delete} /shipments/:id Delete shipment (order status)
+     * @apiVersion 0.2.0
      * @apiName DeleteShipment
-     * @apiGroup OrderStatus
-     *
+     * @apiGroup Order Status
      *
      * @apiSuccess {Number} shipmentID ID of the Shipment/Order.
      * @apiSuccess {String} status  The status of the order.
@@ -278,6 +280,7 @@ class ShipmentsController extends Controller
             }
      *
      */
+
     /**
      * @param $id
      * @return mixed

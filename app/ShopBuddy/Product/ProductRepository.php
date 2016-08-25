@@ -53,6 +53,10 @@ class ProductRepository
         return Product::latest()->get();
     }
 
+    public function getAllProductsByCartId($cartId) {
+        return Product::where('cart_id', $cartId)->latest()->get();
+    }
+
     /**
      * Get details of a specific product by the id
      * @param $id
@@ -69,9 +73,8 @@ class ProductRepository
      */
     public function getAmazonProductAttributes(array $data){
 
-//        $public = env('AMAZON_PUBLIC_KEY'); //amazon public key here
-        $public = 'AKIAIX4VTDIKSWDU3RCA'; //amazon public key here
-        $private = 'ReQt6CWiC2ediNGTzOHNQHb0zsbXZv9Hw1+9gAhT'; //amazon private/secret key here
+        $public = getenv('AMAZON_PUBLIC_KEY'); //amazon public key here
+        $private = getenv('AMAZON_SECRET_KEY'); //amazon private/secret key here
         $site = 'com'; //amazon region
         $affiliate_id = 'ASSOCIATE TAG'; //amazon affiliate id
 

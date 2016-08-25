@@ -29,15 +29,17 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      * Authentication
      */
     $api->post('/user/authenticate', 'App\Http\Controllers\Auth\AuthController@authenticate');
-    $api->post('/user/register', 'App\Http\Controllers\Auth\AuthController@registerUser');
-    $api->post('/user', 'App\Http\Controllers\Auth\AuthController@showUser');
+    $api->post('/authenticated/user', 'App\Http\Controllers\Auth\AuthController@showUser');
     $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refreshToken');
 
     /**
-     * Checkout
+     * Users
      */
-    $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
-    $api->post('/user/checkout', 'App\Http\Controllers\CheckoutController@checkout');
+    $api->get('/users', 'App\Http\Controllers\UsersController@getAllUsers');
+    $api->post('/users', 'App\Http\Controllers\Auth\AuthController@registerUser');
+    $api->get('/users/{id}', 'App\Http\Controllers\UsersController@getUserById');
+    $api->put('/users/{id}', 'App\Http\Controllers\UsersController@updateUserById');
+    $api->delete('/users/{id}', 'App\Http\Controllers\UsersController@deleteUser');
 
     /**
      * Pesapal IPN Listener
@@ -63,4 +65,21 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      */
     $api->get('/carts', 'App\Http\Controllers\CartsController@getAllCarts');
     $api->get('/carts/{id}', 'App\Http\Controllers\CartsController@getCartById');
+    $api->put('/carts/{id}', 'App\Http\Controllers\CartsController@updateCartById');
+    $api->delete('/carts/{id}', 'App\Http\Controllers\CartsController@deleteCartById');
+
+    /**
+     * Checkout
+     */
+    $api->post('/carts', 'App\Http\Controllers\CheckoutController@checkout');
+    $api->post('/products/attributes', 'App\Http\Controllers\CheckoutController@getAmazonProductAttributes');
+
+    /**
+     * Products
+     */
+    $api->get('/products', 'App\Http\Controllers\ProductsController@getAllProducts');
+    $api->get('/carts/{id}/products', 'App\Http\Controllers\ProductsController@getAllProductsByCartId');
+    $api->get('/products/{id}', 'App\Http\Controllers\ProductsController@getProductById');
+    $api->put('/products/{id}', 'App\Http\Controllers\ProductsController@updateProductById');
+    $api->delete('/products/{id}', 'App\Http\Controllers\ProductsController@deleteProductById');
 });
