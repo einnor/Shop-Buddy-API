@@ -153,7 +153,8 @@ class AuthController extends Controller
         }catch(TokenBlacklistedException $ex){
             return $this->response->error('Token is blacklisted', 401);
         }
-        return $this->response->array(compact('currentUser','token'))->setStatusCode(200);
+
+        return $this->response->array(compact('currentUser'))->setStatusCode(200);
     }
 
     public function authenticateRequest() {

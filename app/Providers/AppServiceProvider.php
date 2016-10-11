@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Response;
+use Exception;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        app('api.exception')->register(function (Exception $exception) {
+                return app('App\Exceptions\ApiExceptionHandler')->handle($exception);
+            });
     }
 
     /**
