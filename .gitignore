@@ -5,3 +5,6 @@ Homestead.yaml
 Homestead.json
 .env
 .idea/
+.DS_Store
+app/.DS_Store
+app/ShopBuddy/.DS_Store
