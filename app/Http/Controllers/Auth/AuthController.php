@@ -221,6 +221,64 @@ class AuthController extends Controller
     }
 
     /**
+     * @api {post} /api/users/sign-in-or-sign-up Login/Create new user
+     * @apiVersion 0.1.0
+     * @apiName LoginOrCreateUser
+     * @apiGroup User
+     *
+     * @param Request $request
+     * @apiParam {String} email Users email.
+     * @apiParam {String} password Users password.
+     *
+     * @apiSuccess {String} token User token.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImlzcyI6Imh0dHA6XC9cL3Nob3BidWRkeS5kZXZcL2FwaVwvdXNlclwvcmVnaXN0ZXIiLCJpYXQiOjE0NzAwMzE2NDAsImV4cCI6MTQ3MDAzNTI0MCwibmJmIjoxNDcwMDMxNjQwLCJqdGkiOiIwNWM0ZWZjNTdmMDNiZmMwZGY4M2QwZWNkODUwYmNiZiJ9.422Hp7oxcd_lG07us1nnuGfbVtyqVsLp_CNpO4n-qhY",
+                "currentUser": {
+                "id": 8,
+                "name": "",
+                "email": "tom.keen@gmail.com",
+                "created_at": "2016-08-01 06:07:20",
+                "updated_at": "2016-08-01 06:07:20"
+                }
+     *     }
+     *
+     * @apiError ValidationException Input failed validation.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *          "message": "The given data failed to pass validation.",
+     *           "status_code": 500
+     *     }
+     */
+
+    public function signInOrSignUpUser(Request $request)
+    {
+        $validator = $this->validatorForSignInOrSignUp($request->all());
+        if ($validator->fails()) {
+            return $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        // If user exists, sign them in, else sign them up then sign them in
+        if(User::where('email', $request->email)->exists()) {
+            return $this->authenticate($request);
+        }
+        else {
+            $request->name = null;
+            $user = $this->create($request->all());
+            $currentUser = $this->attachUserRole($user->id,'customer');
+            if($currentUser){
+                return $this->authenticate($request);
+            }
+        }
+    }
+
+    /**
      * Attach a role to a user
      *
      * @param $userId
@@ -288,6 +346,19 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration/login request.
+     * @param array $data
+     * @return mixed
+     */
+    protected function validatorForSignInOrSignUp(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
         ]);
     }
 

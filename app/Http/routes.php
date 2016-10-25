@@ -37,6 +37,7 @@ $api->version('v1', ['middleware'=>'cors'], function ($api) {
      */
     $api->get('/users', 'App\Http\Controllers\UsersController@getAllUsers');
     $api->post('/users', 'App\Http\Controllers\Auth\AuthController@registerUser');
+    $api->post('/users/sign-in-or-sign-up', 'App\Http\Controllers\Auth\AuthController@signInOrSignUpUser');
     $api->get('/users/{id}', 'App\Http\Controllers\UsersController@getUserById');
     $api->put('/users/{id}', 'App\Http\Controllers\UsersController@updateUserById');
     $api->delete('/users/{id}', 'App\Http\Controllers\UsersController@deleteUser');
