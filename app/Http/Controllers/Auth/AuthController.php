@@ -357,7 +357,7 @@ class AuthController extends Controller
     protected function validatorForSignInOrSignUp(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
             'password' => 'required|min:6',
         ]);
     }
