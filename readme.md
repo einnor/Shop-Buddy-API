@@ -1,4 +1,4 @@
-#ShopBuddy API
+# ShopBuddy API
 
 This is an implementation for ShopBuddy API using the Laravel Framework
 
